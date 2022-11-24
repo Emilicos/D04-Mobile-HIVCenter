@@ -11,7 +11,7 @@
 ## Tautan Aplikasi Heroku
 **TBA**
 
-## ☄️ Cerita Aplikasi yang Diajukan Serta Manfaatnya ☄️
+##  Cerita Aplikasi yang Diajukan Serta Manfaatnya 
 
 <p align="justify"> Sebagaimana yang tertulis pada website resmi <strong>G20</strong> terkait <strong>Arsitektur Kesehatan Global</strong> sebagai berikut, "Indonesia akan mendorong penguatan ketahanan kesehatan dunia serta membantu mewujudkan sistem kesehatan global lebih inklusif, berkeadilan, dan responsif terhadap krisis," kami memiliki visi untuk menambah pengetahuan, mengedukasi, memberi semangat serta kesempatan untuk berobat sekaligus menghilangkan stigma dan miskonsepsi terhadap mereka yang mengidap penyakit menular seksual. Dengan adanya HIVCenter, kami juga berharap masyarakat menjadi lebih sadar terhadap masalah di sekitar mereka serta mampu mewujudkan suatu lingkungan yang inklusif serta mampu merangkul semua anggota masyarakat terutama mereka yang paling membutuhkannya. <p>
 
