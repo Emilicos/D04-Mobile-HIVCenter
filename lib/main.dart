@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -25,18 +26,40 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
-        title: 'Flutter App',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+        title: 'HIV CENTER',
+        home: AnimatedSplashScreen(
+          splash: Image.asset(
+            'assets/images/TANGAN1.png',
+            width: 700,
+            height: 700,
+          ),
+          duration: 3000, //photo nya gmw gede wkwkkw
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: AppTheme.beige,
+          nextScreen: MyHomePage(
+            title: '',
+          ),
         ),
-        home: const MyHomePage(title: 'Flutter App'),
-        routes: {
-          "/login": (BuildContext context) => const LoginPage(),
-        },
       ),
     );
   }
 }
+
+// class Splash extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     // TODO: implement build
+//     // return SplashScreen(
+//     //   seconds: 4,
+//     //   navigateAfterSeconds: new MyHomePage(title: ''),
+//     //   title: new Text('HIV CENTER', textScaleFactor: 3,),
+//     //   image: new Image.asset('assets/images/TANGAN1.png'),
+//     //   photoSize: 200,
+//     //   loaderColor: AppTheme.lightPink,
+
+//     // );
+//   }
+// }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -51,7 +74,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-  
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -75,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Text(
       title,
       style: const TextStyle(
-          fontSize: 20.0, fontWeight: FontWeight.w700, letterSpacing: 1.2),
+          fontSize: 25.0, fontWeight: FontWeight.w700, letterSpacing: 1.2),
     );
   }
 
@@ -98,13 +120,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Builder(builder: (context) => GestureDetector(
-                          onTap: (){
-                            Scaffold.of(context).openDrawer();
-                          },
-                          child: Icon(Icons.menu, color: Colors.black, size: 30.0),
-                        )),
-                        
+                        Builder(
+                            builder: (context) => GestureDetector(
+                                  onTap: () {
+                                    Scaffold.of(context).openDrawer();
+                                  },
+                                  child: Icon(Icons.menu,
+                                      color: Colors.black, size: 30.0),
+                                )),
                         Icon(Icons.search, color: Colors.black, size: 25.0),
                       ],
                     ),
@@ -121,14 +144,13 @@ class _MyHomePageState extends State<MyHomePage> {
                             animation: true,
                             percent: 0,
                             circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: AppTheme.lightPink,
-                            backgroundColor: AppTheme.lightPink,
+                            progressColor: Colors.transparent,
+                            backgroundColor: Colors.transparent,
                             center: CircleAvatar(
-                              backgroundColor: AppTheme.lightPink,
+                              backgroundColor: Colors.transparent,
                               radius: 100.0,
                               backgroundImage: AssetImage(
                                 'assets/images/asset1.png',
-                                
                               ),
                             ),
                           ),
@@ -180,7 +202,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               subheading('HIV CENTER'),
-                              
                             ],
                           ),
                           SizedBox(height: 15.0),
@@ -200,7 +221,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             subtitle: 'Lorem Ipsum',
                           ),
                           SizedBox(height: 15.0),
-                          
                         ],
                       ),
                     ),
@@ -216,21 +236,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           Row(
                             children: <Widget>[
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.pink,
+                                cardColor: AppTheme.lightPink,
                                 loadingPercent: 0.25, //buat level
-                                title: 'Treating Addictions In Patients With HIV',
+                                title:
+                                    'Treating Addictions In Patients With HIV',
                                 subtitle: 'hahahahaha',
                               ),
                               SizedBox(width: 20.0),
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.pink,
+                                cardColor: AppTheme.darkBeige,
                                 loadingPercent: 0.6,
                                 title: 'Judul',
                                 subtitle: 'hahahaha',
                               ),
                             ],
                           ),
-                          
                         ],
                       ),
                     ),
