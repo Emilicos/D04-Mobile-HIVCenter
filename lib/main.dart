@@ -27,12 +27,19 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         title: 'HIV CENTER',
-        home: AnimatedSplashScreen(splash: Image.asset('assets/images/TANGAN1.png', width: 700, height: 700,),duration: 3000, //photo nya gmw gede wkwkkw
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: AppTheme.beige,
-        nextScreen: MyHomePage(title: '',),
+        home: AnimatedSplashScreen(
+          splash: Image.asset(
+            'assets/images/TANGAN1.png',
+            width: 700,
+            height: 700,
+          ),
+          duration: 3000, //photo nya gmw gede wkwkkw
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: AppTheme.beige,
+          nextScreen: MyHomePage(
+            title: '',
+          ),
         ),
-        
       ),
     );
   }
@@ -90,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Text(
       title,
       style: const TextStyle(
-          fontSize: 20.0, fontWeight: FontWeight.w700, letterSpacing: 1.2),
+          fontSize: 25.0, fontWeight: FontWeight.w700, letterSpacing: 1.2),
     );
   }
 
@@ -137,10 +144,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             animation: true,
                             percent: 0,
                             circularStrokeCap: CircularStrokeCap.round,
-                            progressColor: AppTheme.lightPink,
-                            backgroundColor: AppTheme.lightPink,
+                            progressColor: Colors.transparent,
+                            backgroundColor: Colors.transparent,
                             center: CircleAvatar(
-                              backgroundColor: AppTheme.lightPink,
+                              backgroundColor: Colors.transparent,
                               radius: 100.0,
                               backgroundImage: AssetImage(
                                 'assets/images/asset1.png',
@@ -229,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           Row(
                             children: <Widget>[
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.pink,
+                                cardColor: AppTheme.lightPink,
                                 loadingPercent: 0.25, //buat level
                                 title:
                                     'Treating Addictions In Patients With HIV',
@@ -237,7 +244,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                               SizedBox(width: 20.0),
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.pink,
+                                cardColor: AppTheme.darkBeige,
                                 loadingPercent: 0.6,
                                 title: 'Judul',
                                 subtitle: 'hahahaha',
