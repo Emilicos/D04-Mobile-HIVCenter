@@ -32,7 +32,7 @@
     Modul di atas mengimplementasikan fitur login, logout, pendaftaran akun, serta pembagian peran pengguna ke dalam beberapa kelompok, yaitu rumah sakit, dokter, dan pasien.
     
 3. **Blogpost** <br>
-    Forum blogpost dimana pasien hanya memiliki view (read-only) sedangkan dokter dapat (post, delete, update).
+    Forum blogpost dimana pasien hanya memiliki view (read-only) sedangkan dokter dapat (post, delete).
     
 4. **Booking** <br>
     Fitur booking agar pasien dapat membuat janji dengan dokter dan dokter dapat melihat jadwal dari setiap janji yang ia miliki.
@@ -53,7 +53,17 @@
 
 3. **Visitor** <br>
     Non user yang dapat melihat homepage namun tidak dapat mengakses banyak fitur yang diinginkan. Ini artinya visitor tidak dapat melihat blogpost maupun fitur-fitur lain seperti experience dan booking.
-    
+  
+## Pembagian tugas masing-masing anggota
+
+Berikut adalah pembagian tugas kelompok kami.
+| Nama  | Modul yang Dikerjakan |
+|-------|-----------------------|
+| Alvaro Austin | Blogpost (Membuat fitur untuk menambahkan, mengganti serta melihat blogpost yang ada) |
+| Arditio Reihansyah Putra Pradana | Login, Logout, dan Register  |
+| Carlene Annabel | Experience |
+| Natania Deandra | Booking |
+| Ravena Meilani | Feedback |
     
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester
 
