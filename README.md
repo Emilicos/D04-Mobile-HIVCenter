@@ -8,7 +8,7 @@
 - Natania Deandra (2106633090)
 - Ravena Meilani (2106631923)
 
-## Tautan Aplikasi Heroku
+## Tautan Aplikasi
 **TBA**
 
 ##  Cerita Aplikasi yang Diajukan Serta Manfaatnya 
