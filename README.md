@@ -67,7 +67,10 @@ Berikut adalah pembagian tugas kelompok kami.
     
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester
 
-Mengambil data dari server HIVCenter yang telah dibuat sebelumnya dengan dependencies http, melalui HTTP request seperti GET, POST, PUT, dll. Membuat model sesuai dengan respons dari data yang berasal dari web service tersebut. Membuat http request ke web service menggunakan dependency http. Mengkonversikan objek yang didapatkan dari web service ke model yang telah kita buat di langkah kedua. Menampilkan data yang telah dikonversi ke aplikasi dengan FutureBuilder.
+1. Melakukan migrasi platform Django yang telah dibuat pada saat Proyek Tengah Semester (PTS) dari _heroku_ menjadi _railway_.
+2. Kami akan menggunakan Django Rest untuk melakukan serialization data-data yang diproses. 
+3. Melalui endpoint yang sudah kami buat (berakhiran dengan /json/), akan kami buat models pada aplikasi kami untuk menyimpan data yang didapat dengan komponen yang tepat.
+4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
 
 
 
