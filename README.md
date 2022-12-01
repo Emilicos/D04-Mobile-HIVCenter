@@ -68,9 +68,10 @@ Berikut adalah pembagian tugas kelompok kami.
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester
 
 1. Melakukan migrasi platform Django yang telah dibuat pada saat Proyek Tengah Semester (PTS) dari _heroku_ menjadi _railway_.
-2. Kami akan menggunakan Django Rest untuk melakukan serialization data-data yang diproses. 
+2. Kami akan menggunakan Django Rest API untuk melakukan serialization data-data yang diproses. 
 3. Melalui endpoint yang sudah kami buat (berakhiran dengan /json/), akan kami buat models pada aplikasi kami untuk menyimpan data yang didapat dengan komponen yang tepat.
 4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
+5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
 
 
