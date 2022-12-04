@@ -26,8 +26,8 @@ class _BlogpostPageState extends State<BlogpostPage> {
               MaterialPageRoute(builder: (context) => const AddBlogPage()),
             );
           },
-          child: const Text("Add Blog"),
           style: ElevatedButton.styleFrom(backgroundColor: AppTheme.tagGreen),
+          child: const Text("Add Blog"),
         ),
         body: FutureBuilder(
           future: fetchBlogpost(),
