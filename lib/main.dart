@@ -2,10 +2,9 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:tk_akhir/pages/LoginPage.dart';
-import 'package:tk_akhir/app_theme.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
+import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/tile_column.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
           duration: 3000, //photo nya gmw gede wkwkkw
           splashTransition: SplashTransition.fadeTransition,
           backgroundColor: AppTheme.beige,
-          nextScreen: MyHomePage(
+          nextScreen: const MyHomePage(
             title: '',
           ),
         ),
@@ -80,19 +79,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   Text subheading(String title) {
     return Text(
       title,
@@ -113,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             TopContainer(
               height: 210,
               width: width,
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -125,10 +111,11 @@ class _MyHomePageState extends State<MyHomePage> {
                                   onTap: () {
                                     Scaffold.of(context).openDrawer();
                                   },
-                                  child: Icon(Icons.menu,
+                                  child: const Icon(Icons.menu,
                                       color: Colors.black, size: 30.0),
                                 )),
-                        Icon(Icons.search, color: Colors.black, size: 25.0),
+                        const Icon(Icons.search,
+                            color: Colors.black, size: 25.0),
                       ],
                     ),
                     Padding(
@@ -146,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             circularStrokeCap: CircularStrokeCap.round,
                             progressColor: Colors.transparent,
                             backgroundColor: Colors.transparent,
-                            center: CircleAvatar(
+                            center: const CircleAvatar(
                               backgroundColor: Colors.transparent,
                               radius: 100.0,
                               backgroundImage: AssetImage(
@@ -158,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: Text(
+                                child: const Text(
                                   'Carlene Annabel',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -169,7 +156,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               ),
                               Container(
-                                child: Text(
+                                child: const Text(
                                   'Pasien',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -192,11 +179,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     Container(
                       color: Colors.transparent,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -204,14 +191,14 @@ class _MyHomePageState extends State<MyHomePage> {
                               subheading('HIV CENTER'),
                             ],
                           ),
-                          SizedBox(height: 15.0),
+                          const SizedBox(height: 15.0),
                           TileColumn(
                             icon: CupertinoIcons.arrow_down_right,
                             iconBackgroundColor: AppTheme.darkBeige,
                             title: 'About Us',
                             subtitle: 'Lorem Ipsum',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 15.0,
                           ),
                           TileColumn(
@@ -220,35 +207,40 @@ class _MyHomePageState extends State<MyHomePage> {
                             title: 'Misconceptions',
                             subtitle: 'Lorem Ipsum',
                           ),
-                          SizedBox(height: 15.0),
+                          const SizedBox(height: 15.0),
                         ],
                       ),
                     ),
                     Container(
                       color: Colors.transparent,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 20.0, vertical: 10.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           subheading('BlogPost'),
-                          SizedBox(height: 5.0),
+                          const SizedBox(height: 5.0),
                           Row(
                             children: <Widget>[
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.lightPink,
-                                loadingPercent: 0.25, //buat level
+                                cardColor: AppTheme.beige,
                                 title:
                                     'Treating Addictions In Patients With HIV',
                                 subtitle: 'hahahahaha',
+                                user: "asdfadf",
+                                date: "adsf",
+                                importance: "adf",
+                                pk: 2,
                               ),
-                              SizedBox(width: 20.0),
+                              const SizedBox(width: 20.0),
                               ActiveBlogpostCard(
-                                cardColor: AppTheme.darkBeige,
-                                loadingPercent: 0.6,
-                                title: 'Judul',
-                                subtitle: 'hahahaha',
-                              ),
+                                  cardColor: AppTheme.beige,
+                                  title: 'Judul',
+                                  subtitle: 'hahahaha',
+                                  user: "asdf",
+                                  date: "adsf",
+                                  importance: "adf",
+                                  pk: 2),
                             ],
                           ),
                         ],
