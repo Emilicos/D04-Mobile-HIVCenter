@@ -19,7 +19,7 @@ class DrawerClass extends StatelessWidget {
             title: const Text('HIV CENTER'),
             onTap: () {
               Navigator.of(context).pop();
-              if (this.currentPage == 'HIV CENTER') return;
+              if (currentPage == 'HIV CENTER') return;
 
               Navigator.pushReplacement(
                 context,
@@ -33,9 +33,6 @@ class DrawerClass extends StatelessWidget {
           ListTile(
             title: const Text('Blogpost'),
             onTap: () {
-              Navigator.of(context).pop();
-              if (this.currentPage == 'HIV CENTER') return;
-
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const BlogpostPage()),

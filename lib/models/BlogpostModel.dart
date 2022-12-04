@@ -35,6 +35,7 @@ class Fields {
   Fields({
     required this.importance,
     required this.user,
+    required this.username,
     required this.time,
     required this.title,
     required this.opening,
@@ -44,6 +45,7 @@ class Fields {
 
   String importance;
   int user;
+  String username;
   DateTime time;
   String title;
   String opening;
@@ -53,6 +55,7 @@ class Fields {
   factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         importance: json["importance"],
         user: json["user"],
+        username: json["username"],
         time: DateTime.parse(json["time"]),
         title: json["title"],
         opening: json["opening"],
@@ -63,6 +66,7 @@ class Fields {
   Map<String, dynamic> toJson() => {
         "importance": importance,
         "user": user,
+        "username": username,
         "time": time.toIso8601String(),
         "title": title,
         "opening": opening,
