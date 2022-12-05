@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:tk_akhir/models/LoginModel.dart';
+
+Map<String, dynamic> UserData = {"is_login": false, "username": "", "role": 0};
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,7 +22,6 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password = "";
-  List<Login> dataLogin = [];
 
   @override
   Widget build(BuildContext context) {
@@ -141,56 +141,88 @@ class _LoginPageState extends State<LoginPage> {
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.blue),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (_loginFormKey.currentState!.validate()) {
-                                dataLogin.add(Login(
-                                    username: username, password: password));
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return Dialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      elevation: 15,
-                                      child: ListView(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, bottom: 20),
-                                        shrinkWrap: true,
-                                        children: <Widget>[
-                                          const Center(
-                                              child: Text(
-                                                  'Data sudah berhasil dibuat')),
-                                          const SizedBox(height: 20),
-                                          TextButton(
-                                            onPressed: () async {
-                                              // Future<dynamic> response =
-                                              //     await request.login(
-                                              //         "http://localhost:8000/authentication/login/validate_login/",
-                                              //         dataLogin);
-
-                                              await request.login(
-                                                  "http://localhost:8000/authentication/login/validate_login/",
-                                                  {
-                                                    username: username,
-                                                    password: password,
-                                                  }).then((value) {
-                                                print(value);
-                                                print(request.loggedIn);
-                                              }, onError: (error) {
-                                                print(error);
-                                              });
-                                              Navigator.pop(context);
-                                              Navigator.pushReplacementNamed(
-                                                  context, "/homepage");
-                                            },
-                                            child: const Text('Kembali'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
+                                await request.login(
+                                    "http://localhost:8000/authentication/login/validate_login/",
+                                    {
+                                      'username': username,
+                                      'password': password,
+                                    }).then((value) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            Center(
+                                                child: Text(value["is_login"]
+                                                    ? 'Login berhasil!'
+                                                    : "Kredensial yang dimasukkan salah")),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                if (value["is_login"]) {
+                                                  UserData["is_login"] =
+                                                      value["is_login"];
+                                                  UserData["username"] =
+                                                      value["username"];
+                                                  UserData["role"] =
+                                                      value["role"];
+                                                  Navigator.pop(context);
+                                                  Navigator
+                                                      .pushReplacementNamed(
+                                                          context, "/homepage");
+                                                } else {
+                                                  Navigator.pop(context);
+                                                }
+                                              },
+                                              child: Text(value["is_login"]
+                                                  ? 'Homepage'
+                                                  : "Kembali"),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }, onError: (error) {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Login gagal karena server!')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {},
+                                              child: const Text('Kembali'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                });
                                 // Add sesuatu
                               }
                             },

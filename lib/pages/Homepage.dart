@@ -55,7 +55,7 @@ class _HomePageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-
+    final args = ModalRoute.of(context)!.settings.arguments;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
