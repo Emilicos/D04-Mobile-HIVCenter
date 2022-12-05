@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
@@ -52,6 +54,8 @@ class _HomePageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,

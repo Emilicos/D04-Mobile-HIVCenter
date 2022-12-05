@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:tk_akhir/models/LoginModel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,12 +21,14 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password = "";
+  List<Login> dataLogin = [];
+
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
         appBar: AppBar(
-          title: Text("Login"),
+          title: const Text("Login"),
         ),
         body: Form(
             key: _loginFormKey,
@@ -140,6 +143,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             onPressed: () {
                               if (_loginFormKey.currentState!.validate()) {
+                                dataLogin.add(Login(
+                                    username: username, password: password));
                                 showDialog(
                                   context: context,
                                   builder: (context) {
@@ -158,7 +163,23 @@ class _LoginPageState extends State<LoginPage> {
                                                   'Data sudah berhasil dibuat')),
                                           const SizedBox(height: 20),
                                           TextButton(
-                                            onPressed: () {
+                                            onPressed: () async {
+                                              // Future<dynamic> response =
+                                              //     await request.login(
+                                              //         "http://localhost:8000/authentication/login/validate_login/",
+                                              //         dataLogin);
+
+                                              await request.login(
+                                                  "http://localhost:8000/authentication/login/validate_login/",
+                                                  {
+                                                    username: username,
+                                                    password: password,
+                                                  }).then((value) {
+                                                print(value);
+                                                print(request.loggedIn);
+                                              }, onError: (error) {
+                                                print(error);
+                                              });
                                               Navigator.pop(context);
                                               Navigator.pushReplacementNamed(
                                                   context, "/homepage");
