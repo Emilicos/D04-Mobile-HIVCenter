@@ -4,6 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
+import 'package:tk_akhir/pages/LoginPage.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/tile_column.dart';
@@ -112,10 +113,10 @@ class _HomePageState extends State<Homepage> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Container(
-                                child: const Text(
-                                  'Carlene Annabel',
+                                child: Text(
+                                  UserData["username"],
                                   textAlign: TextAlign.start,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 22.0,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w800,
@@ -123,10 +124,10 @@ class _HomePageState extends State<Homepage> {
                                 ),
                               ),
                               Container(
-                                child: const Text(
-                                  'Pasien',
+                                child: Text(
+                                  UserData["role"] == 1 ? 'Pasien' : "Dokter",
                                   textAlign: TextAlign.start,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16.0,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,
