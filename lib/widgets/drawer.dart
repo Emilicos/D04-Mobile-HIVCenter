@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class DrawerClass extends StatelessWidget {
-  DrawerClass(this.currentPage);
   final String currentPage;
+  const DrawerClass(this.currentPage, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30.0,
           ),
           // Adding clickable menu

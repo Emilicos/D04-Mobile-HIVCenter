@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-Map<String, dynamic> UserData = {"is_login": false, "username": "", "role": 0};
+Map<String, dynamic> userData = {"is_login": false, "username": "", "role": 0};
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -171,11 +171,11 @@ class _LoginPageState extends State<LoginPage> {
                                             TextButton(
                                               onPressed: () {
                                                 if (value["is_login"]) {
-                                                  UserData["is_login"] =
+                                                  userData["is_login"] =
                                                       value["is_login"];
-                                                  UserData["username"] =
+                                                  userData["username"] =
                                                       value["username"];
-                                                  UserData["role"] =
+                                                  userData["role"] =
                                                       value["role"];
                                                   Navigator.pop(context);
                                                   Navigator

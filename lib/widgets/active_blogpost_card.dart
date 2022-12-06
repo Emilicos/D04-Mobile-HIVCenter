@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tk_akhir/utils/deleteBlogpost.dart';
+import 'package:tk_akhir/utils/delete_blogpost.dart';
 
 import '../app_theme.dart';
 
@@ -13,6 +13,7 @@ class ActiveBlogpostCard extends StatelessWidget {
   final int pk;
 
   const ActiveBlogpostCard({
+    super.key,
     required this.cardColor,
     required this.title,
     required this.subtitle,
@@ -124,15 +125,50 @@ class ActiveBlogpostCard extends StatelessWidget {
                                 onPressed: () async {
                                   await deleteBlogpost(pk).then(
                                       (value) => {
-                                            print(value.body),
                                             Navigator.popAndPushNamed(
                                                 context, '/blogpost')
                                           },
-                                      onError: (error) => {print(error)});
+                                      onError: (error) => {
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) {
+                                                return Dialog(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  elevation: 15,
+                                                  child: ListView(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 20,
+                                                            bottom: 20),
+                                                    shrinkWrap: true,
+                                                    children: <Widget>[
+                                                      const Center(
+                                                          child: Text(
+                                                              'Tidak bisa delete item')),
+                                                      const SizedBox(
+                                                          height: 20),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: const Text(
+                                                            'Kembali'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            )
+                                          });
                                 },
-                                child: const Text("Delete"),
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: AppTheme.redDelete),
+                                child: const Text("Delete"),
                               ),
                             ],
                           ),

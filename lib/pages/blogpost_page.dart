@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
+// import 'package:pbp_django_auth/pbp_django_auth.dart';
+// import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
-import 'package:tk_akhir/pages/BlogpostDetail.dart';
-import 'package:tk_akhir/utils/fetchBlogpost.dart';
+import 'package:tk_akhir/pages/blogpost_detail.dart';
+import 'package:tk_akhir/utils/fetch_blogpost.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 
@@ -17,11 +17,11 @@ class BlogpostPage extends StatefulWidget {
 class _BlogpostPageState extends State<BlogpostPage> {
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    // final request = context.watch<CookieRequest>();
 
     return Scaffold(
         appBar: AppBar(title: const Text("Blogpost")),
-        drawer: DrawerClass("Blogpost"),
+        drawer: const DrawerClass("Blogpost"),
         floatingActionButton: ElevatedButton(
           onPressed: () {
             Navigator.popAndPushNamed(context, "/create-blogpost");

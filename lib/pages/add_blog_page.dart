@@ -268,38 +268,86 @@ class _AddBlogPageState extends State<AddBlogPage> {
                                           "main": main,
                                           "closing": closing,
                                           "importance": importanceValue
-                                        }).then((value) => {print(value)},
-                                        onError: (error) => {print(error)});
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return Dialog(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          elevation: 15,
-                                          child: ListView(
-                                            padding: const EdgeInsets.only(
-                                                top: 20, bottom: 20),
-                                            shrinkWrap: true,
-                                            children: <Widget>[
-                                              const Center(
-                                                  child: Text(
-                                                      'Data sudah berhasil dibuat')),
-                                              const SizedBox(height: 20),
-                                              TextButton(
-                                                onPressed: () {
-                                                  Navigator.popAndPushNamed(
-                                                      context, "/blogpost");
+                                        }).then(
+                                        (value) => {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return Dialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    elevation: 15,
+                                                    child: ListView(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 20,
+                                                              bottom: 20),
+                                                      shrinkWrap: true,
+                                                      children: <Widget>[
+                                                        const Center(
+                                                            child: Text(
+                                                                'Data sudah berhasil dibuat')),
+                                                        const SizedBox(
+                                                            height: 20),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator
+                                                                .popAndPushNamed(
+                                                                    context,
+                                                                    "/blogpost");
+                                                          },
+                                                          child: const Text(
+                                                              'Kembali'),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
                                                 },
-                                                child: const Text('Kembali'),
-                                              ),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                    );
+                                              )
+                                            },
+                                        onError: (error) => {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return Dialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    elevation: 15,
+                                                    child: ListView(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 20,
+                                                              bottom: 20),
+                                                      shrinkWrap: true,
+                                                      children: <Widget>[
+                                                        const Center(
+                                                            child: Text(
+                                                                'Data Gagal dibuat')),
+                                                        const SizedBox(
+                                                            height: 20),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: const Text(
+                                                              'Kembali'),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              )
+                                            });
+
                                     // Add sesuatu
                                   }
                                 },
