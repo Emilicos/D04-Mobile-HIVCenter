@@ -56,7 +56,7 @@ class _HomePageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-    final args = ModalRoute.of(context)!.settings.arguments;
+
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -214,6 +214,25 @@ class _HomePageState extends State<Homepage> {
                         ],
                       ),
                     ),
+                    Container(
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await request
+                              .logout(
+                                  "http://localhost:8000/authentication/logout/")
+                              .then(
+                                  (value) => {
+                                        Navigator.pop(context),
+                                        Navigator.pushReplacementNamed(
+                                            context, "/")
+                                      },
+                                  onError: (error) => {print(error)});
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.tagRed),
+                        child: const Text("Logout"),
+                      ),
+                    )
                   ],
                 ),
               ),

@@ -214,7 +214,9 @@ class _LoginPageState extends State<LoginPage> {
                                                     'Login gagal karena server!')),
                                             const SizedBox(height: 20),
                                             TextButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
                                               child: const Text('Kembali'),
                                             ),
                                           ],
