@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tk_akhir/main.dart';
-import 'package:tk_akhir/pages/BlogpostPage.dart';
 
 class DrawerClass extends StatelessWidget {
   DrawerClass(this.currentPage);
@@ -21,22 +19,13 @@ class DrawerClass extends StatelessWidget {
               Navigator.of(context).pop();
               if (currentPage == 'HIV CENTER') return;
 
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const MyHomePage(
-                          title: '',
-                        )),
-              );
+              Navigator.pushReplacementNamed(context, "/homepage");
             },
           ),
           ListTile(
             title: const Text('Blogpost'),
             onTap: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const BlogpostPage()),
-              );
+              Navigator.pushReplacementNamed(context, "/blogpost");
             },
           ),
         ],

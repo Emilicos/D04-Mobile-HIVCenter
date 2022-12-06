@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tk_akhir/models/PostBlogpostModel.dart';
-import 'package:tk_akhir/pages/BlogpostPage.dart';
-import 'package:tk_akhir/utils/createBlogpost.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class AddBlogPage extends StatefulWidget {
   const AddBlogPage({Key? key}) : super(key: key);
@@ -19,10 +18,11 @@ class _AddBlogPageState extends State<AddBlogPage> {
   String importance = "";
   String importanceValue = "";
   List<String> pilihan = ["Low", "Intermediate", "High"];
-  List<Blogpost> blogpostData = [];
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         appBar: AppBar(title: const Text("Add Blog")),
         body: Form(
@@ -258,15 +258,18 @@ class _AddBlogPageState extends State<AddBlogPage> {
                                   backgroundColor:
                                       MaterialStateProperty.all(Colors.blue),
                                 ),
-                                onPressed: () {
+                                onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
-                                    blogpostData.add(Blogpost(
-                                        title: title,
-                                        opening: opening,
-                                        main: main,
-                                        closing: closing,
-                                        importance: importance));
-                                    initialPost(blogpostData);
+                                    await request.post(
+                                        "http://localhost:8000/blogpost/create/",
+                                        {
+                                          "title": title,
+                                          "opening": opening,
+                                          "main": main,
+                                          "closing": closing,
+                                          "importance": importanceValue
+                                        }).then((value) => {print(value)},
+                                        onError: (error) => {print(error)});
                                     showDialog(
                                       context: context,
                                       builder: (context) {
@@ -287,13 +290,8 @@ class _AddBlogPageState extends State<AddBlogPage> {
                                               const SizedBox(height: 20),
                                               TextButton(
                                                 onPressed: () {
-                                                  Navigator.pop(context);
-                                                  Navigator.pushReplacement(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            const BlogpostPage()),
-                                                  );
+                                                  Navigator.popAndPushNamed(
+                                                      context, "/blogpost");
                                                 },
                                                 child: const Text('Kembali'),
                                               ),

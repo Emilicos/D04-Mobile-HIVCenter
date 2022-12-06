@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tk_akhir/pages/BlogpostPage.dart';
 import 'package:tk_akhir/utils/deleteBlogpost.dart';
 
 import '../app_theme.dart';
@@ -13,7 +12,7 @@ class ActiveBlogpostCard extends StatelessWidget {
   final String date;
   final int pk;
 
-  ActiveBlogpostCard({
+  const ActiveBlogpostCard({
     required this.cardColor,
     required this.title,
     required this.subtitle,
@@ -25,6 +24,8 @@ class ActiveBlogpostCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final request = context.watch<CookieRequest>();
+
     Color importanceStyle = AppTheme.tagGreen;
     String importanceWord = "";
     if (importance == "HH") {
@@ -41,8 +42,8 @@ class ActiveBlogpostCard extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10.0),
-        padding: EdgeInsets.all(15.0),
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.all(15.0),
         decoration: BoxDecoration(
           color: cardColor,
           borderRadius: BorderRadius.circular(40.0),
@@ -53,7 +54,7 @@ class ActiveBlogpostCard extends StatelessWidget {
           children: <Widget>[
             Chip(
                 label: Text(importanceWord,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.bold)),
                 backgroundColor: importanceStyle),
             Column(
@@ -64,7 +65,7 @@ class ActiveBlogpostCard extends StatelessWidget {
                   child: Center(
                     child: Text(
                       title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,
                         fontWeight: FontWeight.w700,
@@ -77,7 +78,7 @@ class ActiveBlogpostCard extends StatelessWidget {
                   child: Center(
                     child: Text(
                       subtitle,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12.0,
                         color: AppTheme.grey,
                         fontWeight: FontWeight.w400,
@@ -95,7 +96,7 @@ class ActiveBlogpostCard extends StatelessWidget {
                           children: [
                             Text(
                               user,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16.0,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -105,7 +106,7 @@ class ActiveBlogpostCard extends StatelessWidget {
                               padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
                               child: Text(
                                 date,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 16.0,
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -121,13 +122,13 @@ class ActiveBlogpostCard extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                 onPressed: () async {
-                                  await deleteBlogpost(pk);
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const BlogpostPage()),
-                                  );
+                                  await deleteBlogpost(pk).then(
+                                      (value) => {
+                                            print(value.body),
+                                            Navigator.popAndPushNamed(
+                                                context, '/blogpost')
+                                          },
+                                      onError: (error) => {print(error)});
                                 },
                                 child: const Text("Delete"),
                                 style: ElevatedButton.styleFrom(
