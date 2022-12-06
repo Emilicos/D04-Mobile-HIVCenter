@@ -189,7 +189,7 @@ class _HomePageState extends State<Homepage> {
                           subheading('BlogPost'),
                           const SizedBox(height: 5.0),
                           Row(
-                            children: <Widget>[
+                            children: const <Widget>[
                               ActiveBlogpostCard(
                                 cardColor: AppTheme.beige,
                                 title:
@@ -222,9 +222,8 @@ class _HomePageState extends State<Homepage> {
                                   "http://localhost:8000/authentication/logout/")
                               .then(
                                   (value) => {
-                                        Navigator.pop(context),
-                                        Navigator.pushReplacementNamed(
-                                            context, "/")
+                                        print(value),
+                                        Navigator.popAndPushNamed(context, "/")
                                       },
                                   onError: (error) => {print(error)});
                         },
