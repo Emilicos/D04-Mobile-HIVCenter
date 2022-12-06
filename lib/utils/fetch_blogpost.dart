@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:tk_akhir/models/BlogpostModel.dart';
+import 'package:tk_akhir/models/blogpost_model.dart';
 
 List<BlogpostModel> listBlogpostGlobal = [];
 

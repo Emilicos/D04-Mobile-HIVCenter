@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/app_theme.dart';
-import 'package:tk_akhir/models/BlogpostModel.dart';
+import 'package:tk_akhir/models/blogpost_model.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 
 class BlogpostDetail extends StatelessWidget {
@@ -13,21 +13,21 @@ class BlogpostDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color ImportanceStyle = AppTheme.tagGreen;
-    String ImportanceText = "Low";
+    Color importanceStyle = AppTheme.tagGreen;
+    String importanceText = "Low";
     if (detail.fields.importance == "HH") {
-      ImportanceStyle = AppTheme.tagRed;
-      ImportanceText = "High";
+      importanceStyle = AppTheme.tagRed;
+      importanceText = "High";
     } else if (detail.fields.importance == "IM") {
-      ImportanceStyle = AppTheme.tagYellow;
-      ImportanceText = "Intermediate";
+      importanceStyle = AppTheme.tagYellow;
+      importanceText = "Intermediate";
     } else {
-      ImportanceStyle = AppTheme.tagGreen;
-      ImportanceText = "Low";
+      importanceStyle = AppTheme.tagGreen;
+      importanceText = "Low";
     }
     return Scaffold(
       appBar: AppBar(title: Text(detail.fields.title)),
-      drawer: DrawerClass("Detail Blogpost"),
+      drawer: const DrawerClass("Detail Blogpost"),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,9 +53,9 @@ class BlogpostDetail extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    ImportanceText,
+                    importanceText,
                     style: TextStyle(
-                        color: ImportanceStyle, fontWeight: FontWeight.bold),
+                        color: importanceStyle, fontWeight: FontWeight.bold),
                   )
                 ],
               ),

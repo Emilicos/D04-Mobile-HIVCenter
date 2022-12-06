@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:tk_akhir/pages/AddBlogPage.dart';
-import 'package:tk_akhir/pages/BlogpostPage.dart';
-import 'package:tk_akhir/pages/Homepage.dart';
-import 'package:tk_akhir/pages/LoginPage.dart';
-import 'package:tk_akhir/pages/RegisterPage.dart';
+import 'package:tk_akhir/pages/add_blog_page.dart';
+import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/homepage.dart';
+import 'package:tk_akhir/pages/login_page.dart';
+import 'package:tk_akhir/pages/register_page.dart';
 
 void main() => runApp(const MyApp());
 

@@ -4,7 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
-import 'package:tk_akhir/pages/LoginPage.dart';
+import 'package:tk_akhir/pages/login_page.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/tile_column.dart';
@@ -13,7 +13,6 @@ import 'package:tk_akhir/widgets/top_container.dart';
 // class Splash extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
-//     // TODO: implement build
 //     // return SplashScreen(
 //     //   seconds: 4,
 //     //   navigateAfterSeconds: new MyHomePage(title: ''),
@@ -60,7 +59,7 @@ class _HomePageState extends State<Homepage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: DrawerClass('HIV CENTER'),
+      drawer: const DrawerClass('HIV CENTER'),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -112,26 +111,22 @@ class _HomePageState extends State<Homepage> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Container(
-                                child: Text(
-                                  UserData["username"],
-                                  textAlign: TextAlign.start,
-                                  style: const TextStyle(
-                                    fontSize: 22.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                              Text(
+                                userData["username"],
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontSize: 22.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
                                 ),
                               ),
-                              Container(
-                                child: Text(
-                                  UserData["role"] == 1 ? 'Pasien' : "Dokter",
-                                  textAlign: TextAlign.start,
-                                  style: const TextStyle(
-                                    fontSize: 16.0,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                              Text(
+                                userData["role"] == 1 ? 'Pasien' : "Dokter",
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
                                 ),
                               ),
                             ],
@@ -160,7 +155,7 @@ class _HomePageState extends State<Homepage> {
                             ],
                           ),
                           const SizedBox(height: 15.0),
-                          TileColumn(
+                          const TileColumn(
                             icon: CupertinoIcons.arrow_down_right,
                             iconBackgroundColor: AppTheme.darkBeige,
                             title: 'About Us',
@@ -169,7 +164,7 @@ class _HomePageState extends State<Homepage> {
                           const SizedBox(
                             height: 15.0,
                           ),
-                          TileColumn(
+                          const TileColumn(
                             icon: CupertinoIcons.arrow_down_right,
                             iconBackgroundColor: AppTheme.pink,
                             title: 'Misconceptions',
@@ -200,7 +195,7 @@ class _HomePageState extends State<Homepage> {
                                 importance: "adf",
                                 pk: 2,
                               ),
-                              const SizedBox(width: 20.0),
+                              SizedBox(width: 20.0),
                               ActiveBlogpostCard(
                                   cardColor: AppTheme.beige,
                                   title: 'Judul',
@@ -214,24 +209,50 @@ class _HomePageState extends State<Homepage> {
                         ],
                       ),
                     ),
-                    Container(
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await request
-                              .logout(
-                                  "http://localhost:8000/authentication/logout/")
-                              .then(
-                                  (value) => {
-                                        print(value),
-                                        Navigator.popAndPushNamed(context, "/")
-                                      },
-                                  onError: (error) => {print(error)});
-                        },
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: AppTheme.tagRed),
-                        child: const Text("Logout"),
-                      ),
-                    )
+                    ElevatedButton(
+                      onPressed: () async {
+                        await request
+                            .logout(
+                                "http://localhost:8000/authentication/logout/")
+                            .then(
+                                (value) =>
+                                    {Navigator.popAndPushNamed(context, "/")},
+                                onError: (error) => {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return Dialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            elevation: 15,
+                                            child: ListView(
+                                              padding: const EdgeInsets.only(
+                                                  top: 20, bottom: 20),
+                                              shrinkWrap: true,
+                                              children: <Widget>[
+                                                const Center(
+                                                    child: Text(
+                                                        'Tidak bisa Logout')),
+                                                const SizedBox(height: 20),
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: const Text('Kembali'),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    });
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: AppTheme.tagRed),
+                      child: const Text("Logout"),
+                    ),
                   ],
                 ),
               ),
