@@ -1,4 +1,10 @@
 [![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
+<label> Pipeline status branch main </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)
+
+<label> Pipeline status branch development </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=development)
+
 # Tugas Kelompok PBP D04
 
 ##  Nama-nama Anggota Kelompok 
