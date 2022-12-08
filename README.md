@@ -1,3 +1,4 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
 # Tugas Kelompok PBP D04
 
 ##  Nama-nama Anggota Kelompok 
@@ -72,7 +73,6 @@ Berikut adalah pembagian tugas kelompok kami.
 3. Melalui endpoint yang sudah kami buat (berakhiran dengan /json/), akan kami buat models pada aplikasi kami untuk menyimpan data yang didapat dengan komponen yang tepat.
 4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
 5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
-
 
 
 
