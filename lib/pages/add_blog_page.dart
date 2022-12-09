@@ -261,7 +261,7 @@ class _AddBlogPageState extends State<AddBlogPage> {
                                 onPressed: () async {
                                   if (_formKey.currentState!.validate()) {
                                     await request.post(
-                                        "http://localhost:8000/blogpost/create/",
+                                        "https://pbp-d04.up.railway.app/blogpost/create/",
                                         {
                                           "title": title,
                                           "opening": opening,

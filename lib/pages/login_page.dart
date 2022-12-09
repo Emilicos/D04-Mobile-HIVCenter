@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                             onPressed: () async {
                               if (_loginFormKey.currentState!.validate()) {
                                 await request.login(
-                                    "http://localhost:8000/authentication/login/validate_login/",
+                                    "https://pbp-d04.up.railway.app/authentication/login/validate_login/",
                                     {
                                       'username': username,
                                       'password': password,
