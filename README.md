@@ -1,3 +1,10 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
+<br> <label> Pipeline status branch main </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)
+
+<label> Pipeline status branch development </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml/badge.svg?branch=development)
+
 # Tugas Kelompok PBP D04
 
 ##  Nama-nama Anggota Kelompok 
@@ -51,9 +58,6 @@
 2. **Pasien** <br>
     User dapat membagikan pengalamannya pada forum experience serta reservasi kepada dokter untuk melakukan konsultasi atau pemeriksaan dan melakukan feedback terhadap website. Pasien juga dapat melihat blogpost
 
-3. **Visitor** <br>
-    Non user yang dapat melihat homepage namun tidak dapat mengakses banyak fitur yang diinginkan. Ini artinya visitor tidak dapat melihat blogpost maupun fitur-fitur lain seperti experience dan booking.
-  
 ## Pembagian tugas masing-masing anggota
 
 Berikut adalah pembagian tugas kelompok kami.
@@ -73,8 +77,7 @@ Berikut adalah pembagian tugas kelompok kami.
 4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
 5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
-
-
+Untuk Fitur Blogpost:
 
 
 
