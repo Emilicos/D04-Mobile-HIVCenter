@@ -77,7 +77,11 @@ Berikut adalah pembagian tugas kelompok kami.
 4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
 5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
+Untuk Fitur Login: <br>
+User akan memulai aplikasi dengan memilih tombol login yang ada. Selanjutnya user akan memasukkan username dan password akun mereka sehingga dapat diredirect kepada halaman `Homepage`. Pada halaman homepage akan dilihatkan profil user mereka 
+
 Untuk Fitur Blogpost:
+- 
 
 
 
