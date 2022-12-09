@@ -11,6 +11,10 @@ class AddExperiencePage extends StatefulWidget {
 
 class _AddExperiencePageState extends State<AddExperiencePage> {
   final _formKey = GlobalKey<FormState>();
+  String title = '';
+  String preview = '';
+  String experience = '';
+  
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +52,24 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                       hintText: "Title",
                     ),
 
+                    onChanged: (String? value) {
+                        setState(() {
+                          title = value!;
+                        });
+                      },
+                    
+                    onSaved: (String? value) {
+                        setState(() {
+                          title = value!;
+                        });
+                      },
+
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Title cannot be empty!';
+                      }else if (value.length > 100) {
+                          return 'Judul tidak boleh lebih dari 100 karakter';
                       }
                       return null;
                     },
@@ -63,14 +81,26 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Color.fromRGBO(128, 212, 196, 1),
                         ),
                       ),
                       hintText: "Experience",
                     ),
+
+                    onChanged: (String? value) {
+                        setState(() {
+                          experience = value!;
+                        });
+                      },
+                    
+                    onSaved: (String? value) {
+                        setState(() {
+                          experience = value!;
+                        });
+                      },
 
                     // Validator sebagai validasi form
                     validator: (String? value) {

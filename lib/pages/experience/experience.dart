@@ -1,7 +1,11 @@
 import 'package:tk_akhir/pages/experience/add_experience.dart';
+import 'package:tk_akhir/pages/homepage.dart';
+import 'package:tk_akhir/utils/get_experience.dart';
 import 'package:tk_akhir/widgets/top_container.dart';
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
+import 'package:tk_akhir/widgets/experience_card.dart';
+import 'package:tk_akhir/utils/get_experience.dart';
 
 import '../../app_theme.dart';
 
@@ -50,43 +54,44 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
-      drawer: DrawerClass('Experience'),
+      drawer: const DrawerClass('Experience'),
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            TopContainer(
-              height: 210,
-              width: width,
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Builder(
-                            builder: (context) => GestureDetector(
-                                  onTap: () {
-                                    Scaffold.of(context).openDrawer();
-                                  },
-                                  child: Icon(Icons.menu,
-                                      color: Colors.black, size: 30.0),
-                                )),
-                        Icon(Icons.search, color: Colors.black, size: 25.0),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 0, vertical: 0.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              TopContainer(
+                height: 210,
+                width: width,
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                child: Text(
+                          Builder(
+                              builder: (context) => GestureDetector(
+                                    onTap: () {
+                                      Scaffold.of(context).openDrawer();
+                                    },
+                                    child: const Icon(Icons.menu,
+                                        color: Colors.black, size: 30.0),
+                                  )),
+                          const Icon(Icons.search,
+                              color: Colors.black, size: 25.0),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 0, vertical: 0.0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: const <Widget>[
+                                Text(
                                   'EXPERIENCE',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -95,9 +100,7 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                                     fontWeight: FontWeight.w800,
                                   ),
                                 ),
-                              ),
-                              Container(
-                                child: Text(
+                                Text(
                                   'Add yours',
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
@@ -106,33 +109,86 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ]),
+              ),
+              const SizedBox(
+                height: 20.0,
+              ),
+              TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(AppTheme.pink),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddExperiencePage()));
+                  },
+                  child: const Text(
+                    "Add Experience",
+                    style: TextStyle(color: Colors.white),
+                  )),
+              const SizedBox(
+                height: 20.0,
+              ),
+              Column(
+                children: [
+                  FutureBuilder(
+                    future: getExperience(),
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else {
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: const [
+                              Text(
+                                "Belum ada experience, Tambahkan milikmu!",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
                               ),
+                              SizedBox(height: 8),
                             ],
-                          )
-                        ],
-                      ),
-                    )
-                  ]),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            TextButton(
-                child: const Text(
-                  "Add Experience",
-                  style: TextStyle(color: Colors.white),
-                ),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      AppTheme.pink),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AddExperiencePage()));
-                }),
-          ],
+                          );
+                        } else {
+                          return ListView.builder(
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (_, i) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Homepage(
+                                                  title: '',
+                                                )),
+                                      );
+                                    },
+                                    child: Column(children: [
+                                      ExperienceCard(
+                                          judul: snapshot.data[i].fields.title,
+                                          author:
+                                              snapshot.data[i].fields.username),
+                                      const SizedBox(
+                                        height: 10,
+                                      )
+                                    ]),
+                                  )));
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/homepage.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -30,7 +31,7 @@ class DrawerClass extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MyHomePage(
+                    builder: (context) => const Homepage(
                           title: '',
                         )),
               );
