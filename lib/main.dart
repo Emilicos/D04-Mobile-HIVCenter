@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           CircularPercentIndicator(
-                            radius: 60.0,
+                            radius: 70.0,
                             lineWidth: 5.0,
                             animation: true,
                             percent: 0,
@@ -148,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             backgroundColor: Colors.transparent,
                             center: CircleAvatar(
                               backgroundColor: Colors.transparent,
-                              radius: 100.0,
+                              radius: 70.0,
                               backgroundImage: AssetImage(
                                 'assets/images/asset1.png',
                               ),
