@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/booking_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
 import 'package:tk_akhir/pages/homepage.dart';
 
@@ -71,7 +72,10 @@ class DrawerClass extends StatelessWidget {
           ListTile(
             title: const Text('Booking'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/booking");
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const BookingPage()),
+              );
             },
           ),
         ],
