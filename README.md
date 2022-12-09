@@ -78,10 +78,10 @@ Berikut adalah pembagian tugas kelompok kami.
 5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
 Untuk Fitur Login: <br>
-User akan memulai aplikasi dengan memilih tombol login yang ada. Selanjutnya user akan memasukkan username dan password akun mereka sehingga dapat diredirect kepada halaman `Homepage`. Pada halaman homepage akan dilihatkan profil user mereka 
+User akan memulai aplikasi dengan memilih tombol login yang ada. Selanjutnya user akan memasukkan username dan password akun mereka sehingga dapat diredirect kepada halaman `Homepage`. Data yang diterima dari form login tersebut akan dituju kepada server railway yang telah dibuat pada PTS kemarin. Endpoint yang digunakan adalah `https://pbp-d04.up.railway.app/authentication/login/validate_login/`. Melalui endpoint ini, kami akan menggunakan package **ppb_django_auth** yang telah disediakan oleh tim asdos. Apabila `JSONResponse` yang diberikan merupakan JSON yang valid maka user telah terautentikasi berdasarkan data-datanya tersebut. Data itu akan kami simpan sebagai variabel global yang dpaat digunakan diseluruh halaman pada fitur kami.  Pada halaman homepage akan dilihatkan profil user mereka 
 
-Untuk Fitur Blogpost:
-- 
+Untuk Fitur Blogpost: <br>
+- User akan membuka halaman blogpost melalui drawer yang sudah disediakan. 
 
 
 
