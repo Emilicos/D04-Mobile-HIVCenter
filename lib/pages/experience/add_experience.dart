@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/app_theme.dart';
+import 'package:tk_akhir/pages/experience/experience.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class AddExperiencePage extends StatefulWidget {
   const AddExperiencePage({super.key});
@@ -14,10 +17,10 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
   String title = '';
   String preview = '';
   String experience = '';
-  
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
@@ -53,23 +56,23 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                     ),
 
                     onChanged: (String? value) {
-                        setState(() {
-                          title = value!;
-                        });
-                      },
-                    
+                      setState(() {
+                        title = value!;
+                      });
+                    },
+
                     onSaved: (String? value) {
-                        setState(() {
-                          title = value!;
-                        });
-                      },
+                      setState(() {
+                        title = value!;
+                      });
+                    },
 
                     // Validator sebagai validasi form
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
                         return 'Title cannot be empty!';
-                      }else if (value.length > 100) {
-                          return 'Judul tidak boleh lebih dari 100 karakter';
+                      } else if (value.length > 100) {
+                        return 'Judul tidak boleh lebih dari 100 karakter';
                       }
                       return null;
                     },
@@ -91,16 +94,16 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                     ),
 
                     onChanged: (String? value) {
-                        setState(() {
-                          experience = value!;
-                        });
-                      },
-                    
+                      setState(() {
+                        experience = value!;
+                      });
+                    },
+
                     onSaved: (String? value) {
-                        setState(() {
-                          experience = value!;
-                        });
-                      },
+                      setState(() {
+                        experience = value!;
+                      });
+                    },
 
                     // Validator sebagai validasi form
                     validator: (String? value) {
@@ -118,17 +121,90 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                   height: 20.0,
                 ),
                 TextButton(
-                    child: const Text(
-                      "Save",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(AppTheme.lightPink),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(AppTheme.lightPink),
+                  ),
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      await request.post(
+                          "https://pbp-d04.up.railway.app/experience/create-experience/",
+                          {
+                            "title": title,
+                            "preview": "",
+                            "experience": experience
+                          }).then(
+                          (value) => {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      elevation: 15,
+                                      child: ListView(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, bottom: 20),
+                                        shrinkWrap: true,
+                                        children: <Widget>[
+                                          const Center(
+                                              child: Text(
+                                                  'Data sudah berhasil dibuat')),
+                                          const SizedBox(height: 20),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const MyExperiencePage(
+                                                              title: '')));
+                                            },
+                                            child: const Text('Kembali'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                )
+                              },
+                          onError: (error) => {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Dialog(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      elevation: 15,
+                                      child: ListView(
+                                        padding: const EdgeInsets.only(
+                                            top: 20, bottom: 20),
+                                        shrinkWrap: true,
+                                        children: <Widget>[
+                                          const Center(
+                                              child: Text('Data Gagal dibuat')),
+                                          const SizedBox(height: 20),
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Kembali'),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                )
+                              });
+                    }
+                  },
+                ),
               ],
             ),
           ),
