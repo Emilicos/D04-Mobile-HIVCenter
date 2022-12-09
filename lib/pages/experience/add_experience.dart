@@ -25,8 +25,8 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
-        title: Text(
-          'Form',
+        title: const Text(
+          'Form Experience',
           style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 22,
@@ -35,7 +35,7 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
         ),
       ),
       // Adding drawer menu
-      drawer: DrawerClass('Add Budget'),
+      drawer: const DrawerClass('Add Budget'),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -46,9 +46,9 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
+                        borderSide: BorderSide(
                           color: Color.fromRGBO(128, 212, 196, 1),
                         ),
                       ),
@@ -117,14 +117,10 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                 const Divider(
                   height: 1,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 TextButton(
-                  child: const Text(
-                    "Save",
-                    style: TextStyle(color: Colors.white),
-                  ),
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(AppTheme.lightPink),
@@ -204,6 +200,10 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
                               });
                     }
                   },
+                  child: const Text(
+                    "Save",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),

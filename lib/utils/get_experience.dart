@@ -14,6 +14,7 @@ Future<List<Experience>> getExperience() async {
   );
   // melakukan decode response menjadi bentuk json
   var data = jsonDecode(utf8.decode(response.bodyBytes));
+  // print(json.decode(response.body));
 
   List<Experience> listExperience = [];
 
