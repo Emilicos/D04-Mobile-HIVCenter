@@ -1,3 +1,10 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
+<br> <label> Pipeline status branch main </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)
+
+<label> Pipeline status branch development </label>
+![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml/badge.svg?branch=development)
+
 # Tugas Kelompok PBP D04
 
 ##  Nama-nama Anggota Kelompok 
@@ -8,7 +15,7 @@
 - Natania Deandra (2106633090)
 - Ravena Meilani (2106631923)
 
-## Tautan Aplikasi Heroku
+## Tautan Aplikasi
 **TBA**
 
 ##  Cerita Aplikasi yang Diajukan Serta Manfaatnya 
@@ -32,7 +39,7 @@
     Modul di atas mengimplementasikan fitur login, logout, pendaftaran akun, serta pembagian peran pengguna ke dalam beberapa kelompok, yaitu rumah sakit, dokter, dan pasien.
     
 3. **Blogpost** <br>
-    Forum blogpost dimana pasien hanya memiliki view (read-only) sedangkan dokter dapat (post, delete, update).
+    Forum blogpost dimana pasien hanya memiliki view (read-only) sedangkan dokter dapat (post, delete).
     
 4. **Booking** <br>
     Fitur booking agar pasien dapat membuat janji dengan dokter dan dokter dapat melihat jadwal dari setiap janji yang ia miliki.
@@ -53,12 +60,25 @@
 
 3. **Visitor** <br>
     Non user yang dapat melihat homepage namun tidak dapat mengakses banyak fitur yang diinginkan. Ini artinya visitor tidak dapat melihat blogpost maupun fitur-fitur lain seperti experience dan booking.
-    
+  
+## Pembagian tugas masing-masing anggota
+
+Berikut adalah pembagian tugas kelompok kami.
+| Nama  | Modul yang Dikerjakan |
+|-------|-----------------------|
+| Alvaro Austin | Blogpost (Membuat fitur untuk menambahkan, mengganti serta melihat blogpost yang ada) |
+| Arditio Reihansyah Putra Pradana | Login, Logout, dan Register  |
+| Carlene Annabel | Experience |
+| Natania Deandra | Booking |
+| Ravena Meilani | Feedback |
     
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester
 
-Mengambil data dari server HIVCenter yang telah dibuat sebelumnya dengan dependencies http, melalui HTTP request seperti GET, POST, PUT, dll. Membuat model sesuai dengan respons dari data yang berasal dari web service tersebut. Membuat http request ke web service menggunakan dependency http. Mengkonversikan objek yang didapatkan dari web service ke model yang telah kita buat di langkah kedua. Menampilkan data yang telah dikonversi ke aplikasi dengan FutureBuilder.
-
+1. Melakukan migrasi platform Django yang telah dibuat pada saat Proyek Tengah Semester (PTS) dari _heroku_ menjadi _railway_.
+2. Kami akan menggunakan Django Rest API untuk melakukan serialization data-data yang diproses. 
+3. Melalui endpoint yang sudah kami buat (berakhiran dengan /json/), akan kami buat models pada aplikasi kami untuk menyimpan data yang didapat dengan komponen yang tepat.
+4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
+5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
 
 

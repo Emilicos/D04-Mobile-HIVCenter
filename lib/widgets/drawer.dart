@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tk_akhir/main.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
 
 class DrawerClass extends StatelessWidget {
-  DrawerClass(this.currentPage);
   final String currentPage;
+  const DrawerClass(this.currentPage, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30.0,
           ),
           // Adding clickable menu
@@ -19,8 +18,15 @@ class DrawerClass extends StatelessWidget {
             title: const Text('HIV CENTER'),
             onTap: () {
               Navigator.of(context).pop();
-              if (this.currentPage == 'HIV CENTER') return;
+              if (currentPage == 'HIV CENTER') return;
 
+              Navigator.pushReplacementNamed(context, "/homepage");
+            },
+          ),
+          ListTile(
+            title: const Text('Blogpost'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, "/blogpost");
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -72,3 +78,4 @@ class DrawerClass extends StatelessWidget {
     );
   }
 }
+

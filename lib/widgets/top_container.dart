@@ -5,9 +5,10 @@ class TopContainer extends StatelessWidget {
   final double height;
   final double width;
   final Widget child;
-  final EdgeInsets padding;
+  final dynamic padding;
   const TopContainer(
-      {super.key, required this.height,
+      {super.key,
+      required this.height,
       required this.width,
       required this.child,
       required this.padding});
@@ -16,9 +17,8 @@ class TopContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding:
-          // ignore: prefer_if_null_operators, unnecessary_null_comparison
-          padding != null ? padding : const EdgeInsets.symmetric(horizontal: 20.0),
-      decoration: const BoxDecoration(
+          padding != null ? padding : EdgeInsets.symmetric(horizontal: 20.0),
+      decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
