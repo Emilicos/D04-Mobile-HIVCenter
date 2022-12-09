@@ -29,7 +29,7 @@ class DrawerClass extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Blogpost'),
+            title: const Text('Booking'),
             onTap: () {
               Navigator.pushReplacementNamed(context, "/booking");
             },
