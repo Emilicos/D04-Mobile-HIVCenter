@@ -18,11 +18,13 @@ class BlogpostPage extends StatefulWidget {
 class _BlogpostPageState extends State<BlogpostPage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     // final request = context.watch<CookieRequest>();
     final isButtonDisabled = userData['role'] == 2 ? false : true;
 
     return Scaffold(
-        appBar: AppBar(title: const Text("Blogpost")),
+        // appBar: AppBar(title: const Text("Blogpost")),
         drawer: const DrawerClass("Blogpost"),
         floatingActionButton: Visibility(
           visible: !isButtonDisabled,
@@ -81,17 +83,18 @@ class _BlogpostPageState extends State<BlogpostPage> {
                                                   .substring(0, 100) +
                                               "..."
                                           : snapshot.data[i].fields.opening,
-                                  user: snapshot.data[i].fields.username,
-                                  date: snapshot.data[i].fields.time
-                                      .toString()
-                                      .substring(0, 10),
-                                  pk: snapshot.data[i].pk),
-                            ],
-                          ),
-                        )));
-              }
-            }
-          },
-        ));
+                                      user: snapshot.data[i].fields.username,
+                                      date: snapshot.data[i].fields.time
+                                          .toString()
+                                          .substring(0, 10),
+                                      pk: snapshot.data[i].pk),
+                                ],
+                              ),
+                            )));
+                  }
+                }
+              },
+            ),
+        );
   }
 }

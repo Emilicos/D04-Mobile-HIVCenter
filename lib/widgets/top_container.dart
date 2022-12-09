@@ -16,8 +16,9 @@ class TopContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding ?? const EdgeInsets.symmetric(horizontal: 20.0),
-      decoration: const BoxDecoration(
+      padding:
+          padding != null ? padding : EdgeInsets.symmetric(horizontal: 20.0),
+      decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,

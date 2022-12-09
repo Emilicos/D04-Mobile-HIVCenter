@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/homepage.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -26,6 +29,43 @@ class DrawerClass extends StatelessWidget {
             title: const Text('Blogpost'),
             onTap: () {
               Navigator.pushReplacementNamed(context, "/blogpost");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BlogpostPage(
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Experience'),
+            onTap: () {
+              Navigator.of(context).pop();
+              if (this.currentPage == 'Experience') return;
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MyExperiencePage(title: '')),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Booking'),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('FeedBack'),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('Login'),
+            onTap: () {
+              Navigator.of(context).pop();
             },
           ),
           ListTile(
@@ -39,3 +79,4 @@ class DrawerClass extends StatelessWidget {
     );
   }
 }
+
