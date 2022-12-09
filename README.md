@@ -80,6 +80,9 @@ Berikut adalah pembagian tugas kelompok kami.
 Untuk Fitur Login: <br>
 User akan memulai aplikasi dengan memilih tombol login yang ada. Selanjutnya user akan memasukkan username dan password akun mereka sehingga dapat diredirect kepada halaman `Homepage`. Data yang diterima dari form login tersebut akan dituju kepada server railway yang telah dibuat pada PTS kemarin. Endpoint yang digunakan adalah `https://pbp-d04.up.railway.app/authentication/login/validate_login/`. Melalui endpoint ini, kami akan menggunakan package **ppb_django_auth** yang telah disediakan oleh tim asdos. Apabila `JSONResponse` yang diberikan merupakan JSON yang valid maka user telah terautentikasi berdasarkan data-datanya tersebut. Data itu akan kami simpan sebagai variabel global yang dpaat digunakan diseluruh halaman pada fitur kami.  Pada halaman homepage akan dilihatkan profil user mereka 
 
+Untuk fitur Logout: <br>
+Kami juga akan menggunakan cara yang sama seperti fitur login, kami akan memanfaatkan endpoint yang dapat mentrigger fungsi yang telah dibuat sewaktu menjalankan PTS kemarin. Endpoint tersebut adalah `https://pbp-d04.up.railway.app/authentication/logout/`. Kami memanfaatkan package **pbp_django_auth**, agar cookie yang telah di set pada headers yang dilakukan pada saat login terjadi dihilangkan agar aplikasi menjadi aman. Setelah itu user akan dikembalikan kepada halaman pilihan login atau register. 
+
 Untuk Fitur Blogpost: <br>
 - User akan membuka halaman blogpost melalui drawer yang sudah disediakan. 
 
