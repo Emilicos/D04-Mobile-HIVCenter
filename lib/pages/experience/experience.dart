@@ -1,12 +1,10 @@
 import 'package:tk_akhir/pages/experience/add_experience.dart';
 import 'package:tk_akhir/pages/experience/experience_detail.dart';
-import 'package:tk_akhir/pages/homepage.dart';
 import 'package:tk_akhir/utils/get_experience.dart';
 import 'package:tk_akhir/widgets/top_container.dart';
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/experience_card.dart';
-import 'package:tk_akhir/utils/get_experience.dart';
 
 import '../../app_theme.dart';
 
@@ -29,19 +27,6 @@ class MyExperiencePage extends StatefulWidget {
 }
 
 class _MyExperiencePageState extends State<MyExperiencePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   Text subheading(String title) {
     return Text(
       title,

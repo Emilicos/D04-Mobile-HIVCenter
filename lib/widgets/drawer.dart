@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/blogpost_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
-import 'package:tk_akhir/pages/homepage.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -40,9 +39,6 @@ class DrawerClass extends StatelessWidget {
           ListTile(
             title: const Text('Experience'),
             onTap: () {
-              Navigator.of(context).pop();
-              if (this.currentPage == 'Experience') return;
-
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

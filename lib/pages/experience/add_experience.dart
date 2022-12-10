@@ -23,7 +23,7 @@ class _AddExperiencePageState extends State<AddExperiencePage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: const Text(
           'Form Experience',
