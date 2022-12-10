@@ -30,6 +30,15 @@ class _AddBookingPageState extends State<AddBookingPage> {
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const BookingPage())
+            );
+          },
+        ),
         title: const Text(
           'Book An Appointment',
           style: TextStyle(
