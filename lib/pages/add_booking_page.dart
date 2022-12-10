@@ -27,7 +27,18 @@ class _AddBookingPageState extends State<AddBookingPage> {
     final request = context.watch<CookieRequest>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Booking")),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Book An Appointment',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+            color: Colors.black54,
+          ),
+        ),
+      ),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -58,23 +69,41 @@ class _AddBookingPageState extends State<AddBookingPage> {
                           ),
                         );
                       } else {
-                        return DropdownButton(
-                          value: dokter,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: data
-                          .map((String val) => DropdownMenuItem<String>(
-                            value: val,
-                            child: Text(val),
-                          ))
-                          .toList(),
-                          onChanged: (String? value) {
-                            setState(() {
-                              dokter = value!;
-                            });
-                          }
-                        );
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const SizedBox(height: 12.0,),
+                            const Text(
+                              'Choose Your Desired Doctor and Schedule',
+                              style: TextStyle(
+                                color: AppTheme.grey,
+                                fontSize: 17.0,
+                              )
+                            ),
+                            const SizedBox(height: 20.0),
+                            DropdownButton(
+                              hint: const Text(
+                                "Doctor",
+                                textAlign: TextAlign.center,
+                              ),
+                              value: dokter,
+                              icon: const Icon(Icons.keyboard_arrow_down),
+                              items: data
+                              .map((String val) => DropdownMenuItem<String>(
+                                value: val,
+                                child: Text(val),
+                              ))
+                              .toList(),
+                              onChanged: (String? value) {
+                                setState(() {
+                                  dokter = value!;
+                                });
+                              }
+                            )
+                          ]
+                        ); 
                       }
-                      
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     } else {
@@ -83,14 +112,21 @@ class _AddBookingPageState extends State<AddBookingPage> {
                   }),
                 ),
                 
+                const SizedBox(height: 12.0),
+                
                 // TANGGAL
                 Visibility(
                   visible: isVisible,
                   child: ListTile(
                     title: Text(tanggal.toString()),
                     leading: TextButton.icon(
-                      icon: const Icon(Icons.calendar_today),
-                      label: const Text("Pilih Tanggal"),
+                      icon: const Icon(
+                        Icons.calendar_today,
+                        color: AppTheme.grey),
+                      label: const Text(
+                        "Date",
+                        style: TextStyle(color: AppTheme.grey)
+                      ),
                       onPressed: () {
                         showDatePicker(
                           context: context,
@@ -106,6 +142,8 @@ class _AddBookingPageState extends State<AddBookingPage> {
                     ),
                   ),
                 ),
+                
+                const SizedBox(height: 12.0),
 
                 // WAKTU
                 Visibility(
@@ -113,8 +151,14 @@ class _AddBookingPageState extends State<AddBookingPage> {
                   child: ListTile(
                     title: Text(waktu),
                     leading: TextButton.icon(
-                      icon: const Icon(Icons.calendar_today),
-                      label: const Text("Pilih Waktu"),
+                      icon: const Icon(
+                        Icons.lock_clock,
+                        color: AppTheme.grey
+                      ),
+                      label: const Text(
+                        "Time",
+                        style: TextStyle(color: AppTheme.grey)
+                      ),
                       onPressed: () {
                         showTimePicker(
                           context: context,
@@ -128,6 +172,8 @@ class _AddBookingPageState extends State<AddBookingPage> {
                     ),
                   ),
                 ),
+                
+                const SizedBox(height: 20.0),
 
                 Visibility(
                   visible: isVisible,
