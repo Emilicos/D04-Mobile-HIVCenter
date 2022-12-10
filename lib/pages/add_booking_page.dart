@@ -17,7 +17,7 @@ class _AddBookingPageState extends State<AddBookingPage> {
   final _formKey = GlobalKey<FormState>();
   String? dokter;
   List<String> listNamaDokter = [];
-  DateTime tanggal = DateTime.now();
+  String tanggal = DateTime.now().toString().substring(0, 10);
   String waktu = "${TimeOfDay.now().toString().substring(10, 15)}:00";
   bool isVisible = true;
 
@@ -144,7 +144,7 @@ class _AddBookingPageState extends State<AddBookingPage> {
                           lastDate: DateTime(2099),
                         ).then((date) {
                           setState(() {
-                            tanggal = date!;
+                            tanggal = date.toString().substring(0, 10);
                           });
                         });
                       },
@@ -198,7 +198,7 @@ class _AddBookingPageState extends State<AddBookingPage> {
                             "https://pbp-d04.up.railway.app/booking/add/",
                             {
                               "doctor": dokter,
-                              "date": tanggal.toString().substring(0, 10),
+                              "date": tanggal,
                               "time": waktu
                             }).then(
                             (value) => {
@@ -242,7 +242,6 @@ class _AddBookingPageState extends State<AddBookingPage> {
                     ),
                   ),
                 ),
-
               ],
             )
           ),
