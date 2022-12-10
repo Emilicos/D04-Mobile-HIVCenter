@@ -8,7 +8,7 @@ List<BlogpostModel> listBlogpostGlobal = [];
 Future<List<BlogpostModel>> fetchBlogpost() async {
   // var url =
   //     Uri.parse('https://pbp-d04.up.railway.app/blogpost/json?importance=DT');
-  listBlogpostGlobal = [];
+  List<BlogpostModel> listBlogpostGlobal = [];
 
   var url =
       Uri.parse('https://pbp-d04.up.railway.app/blogpost/json?importance=DT');

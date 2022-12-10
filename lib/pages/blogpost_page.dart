@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/pages/blogpost_detail.dart';
+import 'package:tk_akhir/pages/login_page.dart';
 import 'package:tk_akhir/utils/fetch_blogpost.dart';
 import 'package:tk_akhir/widgets/active_blogpost_card.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
@@ -22,16 +23,22 @@ class _BlogpostPageState extends State<BlogpostPage> {
     double width = MediaQuery.of(context).size.width;
 
     // final request = context.watch<CookieRequest>();
+    final isButtonDisabled = userData['role'] == 2 ? false : true;
 
     return Scaffold(
         // appBar: AppBar(title: const Text("Blogpost")),
         drawer: const DrawerClass("Blogpost"),
-        floatingActionButton: ElevatedButton(
-          onPressed: () {
-            Navigator.popAndPushNamed(context, "/create-blogpost");
-          },
-          style: ElevatedButton.styleFrom(backgroundColor: AppTheme.tagGreen),
-          child: const Text("Add Blog"),
+        floatingActionButton: Visibility(
+          visible: !isButtonDisabled,
+          child: ElevatedButton(
+            onPressed: () {
+              !isButtonDisabled
+                  ? Navigator.popAndPushNamed(context, "/create-blogpost")
+                  : null;
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: AppTheme.tagGreen),
+            child: Text(!isButtonDisabled ? "Add Blog" : "Halo"),
+          ),
         ),
         body: Column(
           children: [
@@ -102,7 +109,7 @@ class _BlogpostPageState extends State<BlogpostPage> {
                     return Column(
                       children: const [
                         Text(
-                          "Tidak Blogpost yang Dibuat :(",
+                          "Tidak ada Blogpost yang Dibuat :(",
                           style:
                               TextStyle(color: Color(0xff59A5D8), fontSize: 20),
                         ),
@@ -121,8 +128,8 @@ class _BlogpostPageState extends State<BlogpostPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => BlogpostDetail(
-                                          detail: listBlogpostGlobal[i])),
+                                      builder: (context) =>
+                                          BlogpostDetail(detail: snapshot.data[i])),
                                 );
                               },
                               child: Row(
