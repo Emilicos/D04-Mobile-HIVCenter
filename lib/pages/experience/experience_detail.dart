@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
-import 'package:tk_akhir/widgets/top_container.dart';
 
 class ExperienceDetailPage extends StatelessWidget {
   final String title;
@@ -40,7 +39,7 @@ class ExperienceDetailPage extends StatelessWidget {
                           title,
                           maxLines: 5,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
                               color: AppTheme.pink,
@@ -58,7 +57,7 @@ class ExperienceDetailPage extends StatelessWidget {
                             Flexible(child: 
                             Text(
                           experience,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
                               color: Colors.black,

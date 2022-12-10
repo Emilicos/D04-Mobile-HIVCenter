@@ -5,6 +5,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/pages/login_page.dart';
+import 'package:tk_akhir/pages/misconceptions.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/tile_column.dart';
 import 'package:tk_akhir/widgets/top_container.dart';
@@ -161,14 +162,25 @@ class _HomePageState extends State<Homepage> {
                             subtitle: 'Lorem Ipsum',
                           ),
                           const SizedBox(
-                            height: 15.0,
+                            height : 20.0
                           ),
-                          const TileColumn(
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const MisconceptionsPage())),
+                            child: const TileColumn(
                             icon: CupertinoIcons.arrow_down_right,
                             iconBackgroundColor: AppTheme.pink,
                             title: 'Misconceptions',
-                            subtitle: 'Lorem Ipsum',
+                            subtitle: 'Find out the facts',
                           ),
+                          ),
+                          const SizedBox(
+                            height: 15.0,
+                          ),
+
+                          
                           const SizedBox(height: 15.0),
                         ],
                       ),
