@@ -73,24 +73,21 @@ class _AddBookingPageState extends State<AddBookingPage> {
                           ),
                         );
                       } else {
+                        dokter = data[0];
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const SizedBox(height: 12.0,),
                             const Text(
-                              'Choose Your Desired Doctor and Schedule',
+                              'Doctor',
                               style: TextStyle(
                                 color: AppTheme.grey,
-                                fontSize: 17.0,
+                                fontSize: 14.0,
                               )
                             ),
-                            const SizedBox(height: 20.0),
+                            const SizedBox(height: 10.0),
                             DropdownButton(
-                              hint: const Text(
-                                "Doctor",
-                                textAlign: TextAlign.center,
-                              ),
                               value: dokter,
                               icon: const Icon(Icons.keyboard_arrow_down),
                               items: data
