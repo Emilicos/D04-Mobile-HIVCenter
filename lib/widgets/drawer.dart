@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/experience/experience.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -26,6 +28,40 @@ class DrawerClass extends StatelessWidget {
             title: const Text('Blogpost'),
             onTap: () {
               Navigator.pushReplacementNamed(context, "/blogpost");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const BlogpostPage(
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Experience'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MyExperiencePage(title: '')),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Booking'),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('FeedBack'),
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          ListTile(
+            title: const Text('Login'),
+            onTap: () {
+              Navigator.of(context).pop();
             },
           ),
         ],
@@ -33,3 +69,4 @@ class DrawerClass extends StatelessWidget {
     );
   }
 }
+
