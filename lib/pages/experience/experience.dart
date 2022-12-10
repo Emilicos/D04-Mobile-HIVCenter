@@ -186,7 +186,8 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                                         ExperienceCard(
                                             judul:
                                                 snapshot.data[i].fields.title,
-                                            author: snapshot
+                                            // ignore: prefer_interpolation_to_compose_strings
+                                            author: "by: " + snapshot
                                                 .data[i].fields.username),
                                         const SizedBox(
                                           height: 10,
