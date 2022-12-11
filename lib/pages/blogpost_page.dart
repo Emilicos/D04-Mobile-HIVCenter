@@ -24,6 +24,7 @@ class _BlogpostPageState extends State<BlogpostPage> {
 
     // final request = context.watch<CookieRequest>();
     final isButtonDisabled = userData['role'] == 2 ? false : true;
+    ScrollController controller = ScrollController();
 
     return Scaffold(
         // appBar: AppBar(title: const Text("Blogpost")),
@@ -40,7 +41,10 @@ class _BlogpostPageState extends State<BlogpostPage> {
             child: Text(!isButtonDisabled ? "Add Blog" : "Halo"),
           ),
         ),
-        body: Column(
+        body: ListView(
+          physics: const AlwaysScrollableScrollPhysics(), // new
+          controller: controller,
+
           children: [
             TopContainer(
               height: 210,
@@ -128,8 +132,8 @@ class _BlogpostPageState extends State<BlogpostPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          BlogpostDetail(detail: snapshot.data[i])),
+                                      builder: (context) => BlogpostDetail(
+                                          detail: snapshot.data[i])),
                                 );
                               },
                               child: Row(
