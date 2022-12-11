@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/blogpost_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/feedback_page.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -53,9 +54,13 @@ class DrawerClass extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('FeedBack'),
+            title: const Text('Feedback'),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const FeedbackPage(title: '')),
+              );
             },
           ),
           ListTile(
