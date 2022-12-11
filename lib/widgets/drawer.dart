@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/booking_doctor_page.dart';
+import 'package:tk_akhir/pages/booking_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/login_page.dart';
 
 class DrawerClass extends StatelessWidget {
   final String currentPage;
@@ -49,7 +52,15 @@ class DrawerClass extends StatelessWidget {
           ListTile(
             title: const Text('Booking'),
             onTap: () {
-              Navigator.of(context).pop();
+              if (userData['role'] == 1) {
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const BookingPage()));
+              } else {
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const BookingDoctorPage()));
+              }
             },
           ),
           ListTile(
