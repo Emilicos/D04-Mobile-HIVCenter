@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:tk_akhir/pages/experience/add_experience.dart';
 import 'package:tk_akhir/pages/experience/experience_detail.dart';
 import 'package:tk_akhir/utils/get_experience.dart';
-import 'package:tk_akhir/widgets/top_container.dart';
-import 'package:flutter/material.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/experience_card.dart';
+import 'package:tk_akhir/widgets/top_container.dart';
 
 import '../../app_theme.dart';
 
@@ -37,7 +37,6 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _controller = new ScrollController();
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -129,8 +128,7 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                     future: getExperience(),
                     builder: (context, AsyncSnapshot snapshot) {
                       if (snapshot.data == null) {
-                        return const Center(
-                            child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else {
                         if (!snapshot.hasData) {
                           return Column(
@@ -158,8 +156,8 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                                         MaterialPageRoute(
                                             builder: (context) =>
                                                 ExperienceDetailPage(
-                                                  author: snapshot.data[i]
-                                                      .fields.username,
+                                                  author: snapshot
+                                                      .data[i].fields.username,
                                                   title: snapshot
                                                       .data[i].fields.title,
                                                   experience: snapshot.data[i]
@@ -169,12 +167,10 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                                     },
                                     child: Column(children: [
                                       ExperienceCard(
-                                          judul:
-                                              snapshot.data[i].fields.title,
+                                          judul: snapshot.data[i].fields.title,
                                           // ignore: prefer_interpolation_to_compose_strings
                                           author: "by: " +
-                                              snapshot
-                                                  .data[i].fields.username),
+                                              snapshot.data[i].fields.username),
                                       const SizedBox(
                                         height: 10,
                                       ),
