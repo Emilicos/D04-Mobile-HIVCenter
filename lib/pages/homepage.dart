@@ -4,6 +4,7 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
+import 'package:tk_akhir/pages/about_us.dart';
 import 'package:tk_akhir/pages/login_page.dart';
 import 'package:tk_akhir/pages/misconceptions.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
@@ -155,11 +156,17 @@ class _HomePageState extends State<Homepage> {
                             ],
                           ),
                           const SizedBox(height: 15.0),
-                          const TileColumn(
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AboutUsPage())),
+                            child: const TileColumn(
                             icon: CupertinoIcons.arrow_down_right,
                             iconBackgroundColor: AppTheme.darkBeige,
                             title: 'About Us',
                             subtitle: 'Lorem Ipsum',
+                          ),
                           ),
                           const SizedBox(
                             height : 20.0
