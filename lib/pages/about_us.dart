@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tk_akhir/widgets/drawer.dart';
 
 import '../app_theme.dart';
 
@@ -9,6 +10,7 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.lightPink,
+      drawer: const DrawerClass('Experience'),
       body: SafeArea(
         bottom: false,
         child: Stack(
@@ -17,6 +19,22 @@ class AboutUsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Builder(
+                          builder: (context) => GestureDetector(
+                                onTap: () {
+                                  Scaffold.of(context).openDrawer();
+                                },
+                                child: const Icon(Icons.menu,
+                                    color: Colors.black, size: 30.0),
+                              )),
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(32.0),
                     child: Column(
@@ -108,6 +126,9 @@ class AboutUsPage extends StatelessWidget {
                               fontFamily: 'Avenir'),
                           textAlign: TextAlign.left,
                           maxLines: 200,
+                        ),
+                        SizedBox(
+                          height: 10,
                         ),
                       ],
                     ),
