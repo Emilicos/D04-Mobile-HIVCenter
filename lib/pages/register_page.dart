@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'dart:convert' as convert;
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -33,8 +33,6 @@ class _RegisterPage extends State<RegisterPage> {
   @override
   Widget build(BuildContext context){
     final request = context.watch<CookieRequest>();
-    bool isPasien = false;
-    bool isDokter = false;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Register"),
@@ -301,7 +299,8 @@ class _RegisterPage extends State<RegisterPage> {
                         ),
                         onPressed: () async {
                           if (_registerFormKey.currentState!.validate()){
-                            await request.post("https://pbp-d04.up.railway.app/authentication/registerpasien/",
+                            final response = await request.post("https://pbp-d04.up.railway.app/authentication/registerpasien/registerFlutterPasien/",
+                            convert.jsonEncode(
                             {
                               'username' : username,
                               'email' : email,
@@ -309,78 +308,28 @@ class _RegisterPage extends State<RegisterPage> {
                               'last_name' : lName,
                               'password1' : pass1,
                               'password2' : pass2,
-                            }).then((value) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return Dialog(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    elevation: 15,
-                                    child: ListView(
-                                      padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20
-                                      ),
-                                      shrinkWrap: true,
-                                      children: <Widget>[
-                                        Center(
-                                          child: Text(!value["is_taken"]
-                                                ? 'Register Berhasil'
-                                                : "Username sudah terdaftar"),
-                                        ),
-                                        const SizedBox(height: 20),
-                                        TextButton(
-                                          onPressed: () {
-                                            if(!value["is_taken"]){
-                                              userData["is_taken"] = value["is_taken"];
-                                              Navigator.pop(context);
-                                              Navigator.pushReplacementNamed(context, "/homepage");
-                                            } else {
-                                              Navigator.pop(context);
-                                            }
-                                          },
-                                          child: Text(!value["is_taken"]
-                                                ? 'Homepage'
-                                                : "Kembali"),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }
-                              );
-                            },
-                            onError: (error){
-                              showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return Dialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        elevation: 15,
-                                        child: ListView(
-                                          padding: const EdgeInsets.only(
-                                              top: 20, bottom: 20),
-                                          shrinkWrap: true,
-                                          children: <Widget>[
-                                            const Center(
-                                                child: Text(
-                                                    'Register gagal karena server!')),
-                                            const SizedBox(height: 20),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text('Kembali'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                            });
+                            }));
+                            if (response['status'] == 'success'){
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text("Akun Untuk Pasien Berhasil Dibuat"),
+                                ));
+                                Navigator.pushReplacementNamed(context, "/login");
+                            } else if (response['status'] == 'isTaken'){
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text(
+                                    "Username sudah ada silahkan memilih username lainnya"
+                                  ),
+                                ));                             
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text(
+                                    "Register error, silahkan coba lagi"
+                                  ),
+                                ));
+                            }
                           }
                         },
                         child: const Text(
@@ -408,7 +357,8 @@ class _RegisterPage extends State<RegisterPage> {
                         ),
                         onPressed: () async {
                           if (_registerFormKey.currentState!.validate()){
-                            await request.post("https://pbp-d04.up.railway.app/authentication/registerdokter/",
+                            final response = await request.post("https://pbp-d04.up.railway.app/authentication/registerdokter/registerFlutterDokter/",
+                            convert.jsonEncode(
                             {
                               'username' : username,
                               'email' : email,
@@ -416,78 +366,28 @@ class _RegisterPage extends State<RegisterPage> {
                               'last_name' : lName,
                               'password1' : pass1,
                               'password2' : pass2,
-                            }).then((value) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return Dialog(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    elevation: 15,
-                                    child: ListView(
-                                      padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20
-                                      ),
-                                      shrinkWrap: true,
-                                      children: <Widget>[
-                                        Center(
-                                          child: Text(!value["is_taken"]
-                                                ? 'Register Berhasil'
-                                                : "Username sudah terdaftar"),
-                                        ),
-                                        const SizedBox(height: 20),
-                                        TextButton(
-                                          onPressed: () {
-                                            if(!value["is_taken"]){
-                                              userData["is_taken"] = value["is_taken"];
-                                              Navigator.pop(context);
-                                              Navigator.pushReplacementNamed(context, "/homepage");
-                                            } else {
-                                              Navigator.pop(context);
-                                            }
-                                          },
-                                          child: Text(!value["is_taken"]
-                                                ? 'Homepage'
-                                                : "Kembali"),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }
-                              );
-                            },
-                            onError: (error){
-                              showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return Dialog(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        elevation: 15,
-                                        child: ListView(
-                                          padding: const EdgeInsets.only(
-                                              top: 20, bottom: 20),
-                                          shrinkWrap: true,
-                                          children: <Widget>[
-                                            const Center(
-                                                child: Text(
-                                                    'Register gagal karena server!')),
-                                            const SizedBox(height: 20),
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text('Kembali'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                            });
+                            }));
+                            if (response['status'] == 'success'){
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text("Akun Untuk Dokter Berhasil Dibuat"),
+                                ));
+                                Navigator.pushReplacementNamed(context, "/login");
+                            } else if (response['status'] == 'isTaken'){
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text(
+                                    "Username sudah ada silahkan memilih username lainnya"
+                                  ),
+                                ));                             
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                  content: Text(
+                                    "Register error, silahkan coba lagi"
+                                  ),
+                                ));
+                            }
                           }
                         },
                         child: const Text(
@@ -499,7 +399,7 @@ class _RegisterPage extends State<RegisterPage> {
                   ],
                 )
               ],
-            )
+            ),
           ],
         ),
       ),
