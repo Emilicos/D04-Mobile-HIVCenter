@@ -7,7 +7,6 @@ List<DokterModel> listDokterAll = [];
 List<String> listNamaDokter = [];
 
 Future<List<String>> fetchDokter() async {
-  print('fetched');
   
   List<DokterModel> listDokterAll = [];
 
@@ -17,17 +16,12 @@ Future<List<String>> fetchDokter() async {
   );
   var data = jsonDecode(utf8.decode(response.bodyBytes));
 
-  print(data);
-
   List<DokterModel> listDokter = [];
 
   for (var d in data) {
       listDokter.add(DokterModel.fromJson(d));
       listDokterAll.add(DokterModel.fromJson(d));
   }
-
-  print("list dokter " + listDokter.toString());
-  print("list dokter all" + listDokterAll.toString());
 
   List<String> namaDokter = [];
   for (var dokter in listDokter) {
