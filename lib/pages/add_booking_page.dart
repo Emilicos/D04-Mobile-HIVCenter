@@ -73,7 +73,6 @@ class _AddBookingPageState extends State<AddBookingPage> {
                           ),
                         );
                       } else {
-                        dokter = data[0];
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,6 +87,10 @@ class _AddBookingPageState extends State<AddBookingPage> {
                             ),
                             const SizedBox(height: 10.0),
                             DropdownButton(
+                              hint: const Text(
+                                'Pick A Doctor First!',
+                                textAlign: TextAlign.center,
+                              ),
                               value: dokter,
                               icon: const Icon(Icons.keyboard_arrow_down),
                               items: data

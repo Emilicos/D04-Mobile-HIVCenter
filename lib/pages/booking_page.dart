@@ -95,7 +95,7 @@ class _BookingPageState extends State<BookingPage> {
                           builder: (context) => const AddBookingPage()));
                 },
                 child: const Text(
-                  "Book An Appointment",
+                  "Book Here!",
                   style: TextStyle(color: Colors.white),
                 )
               ),

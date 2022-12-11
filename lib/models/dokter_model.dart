@@ -65,12 +65,12 @@ class Fields {
 
     factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         password: json["password"],
-        lastLogin: DateTime.parse(json["last_login"]),
+        lastLogin: json["last_login"] == null ? DateTime.now() : DateTime.parse(json["last_login"]),
         isSuperuser: json["is_superuser"],
         username: json["username"],
-        firstName: json["first_name"],
-        lastName: json["last_name"],
-        email: json["email"],
+        firstName: json["first_name"] ?? '',
+        lastName: json["last_name"] ?? '',
+        email: json["email"] ?? '',
         isStaff: json["is_staff"],
         isActive: json["is_active"],
         dateJoined: DateTime.parse(json["date_joined"]),
