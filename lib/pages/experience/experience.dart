@@ -37,6 +37,7 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController _controller = new ScrollController();
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -118,73 +119,72 @@ class _MyExperiencePageState extends State<MyExperiencePage> {
                   child: const Text(
                     "Add Experience",
                     style: TextStyle(color: Colors.white),
-                  )
-                ),
+                  )),
               const SizedBox(
                 height: 20.0,
               ),
-              SingleChildScrollView(
-                child: Column(
-                  children: [
-                    FutureBuilder(
-                      future: getExperience(),
-                      builder: (context, AsyncSnapshot snapshot) {
-                        if (snapshot.data == null) {
-                          return const Center(
-                              child: CircularProgressIndicator());
+              Column(
+                children: [
+                  FutureBuilder(
+                    future: getExperience(),
+                    builder: (context, AsyncSnapshot snapshot) {
+                      if (snapshot.data == null) {
+                        return const Center(
+                            child: CircularProgressIndicator());
+                      } else {
+                        if (!snapshot.hasData) {
+                          return Column(
+                            children: const [
+                              Text(
+                                "Belum ada experience, Tambahkan milikmu!",
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 20),
+                              ),
+                              SizedBox(height: 8),
+                            ],
+                          );
                         } else {
-                          if (!snapshot.hasData) {
-                            return Column(
-                              children: const [
-                                Text(
-                                  "Belum ada experience, Tambahkan milikmu!",
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                ),
-                                SizedBox(height: 8),
-                              ],
-                            );
-                          } else {
-                            return ListView.builder(
-                                shrinkWrap: true,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (_, i) => Container(
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 8),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  ExperienceDetailPage(
-                                                    author: snapshot.data[i]
-                                                        .fields.username,
-                                                    title: snapshot
-                                                        .data[i].fields.title,
-                                                    experience: snapshot.data[i]
-                                                        .fields.experience,
-                                                  )),
-                                        );
-                                      },
-                                      child: Column(children: [
-                                        ExperienceCard(
-                                            judul:
-                                                snapshot.data[i].fields.title,
-                                            // ignore: prefer_interpolation_to_compose_strings
-                                            author: "by: " + snapshot
-                                                .data[i].fields.username),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                      ]),
-                                    )));
-                          }
+                          return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (_, i) => Container(
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 8),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ExperienceDetailPage(
+                                                  author: snapshot.data[i]
+                                                      .fields.username,
+                                                  title: snapshot
+                                                      .data[i].fields.title,
+                                                  experience: snapshot.data[i]
+                                                      .fields.experience,
+                                                )),
+                                      );
+                                    },
+                                    child: Column(children: [
+                                      ExperienceCard(
+                                          judul:
+                                              snapshot.data[i].fields.title,
+                                          // ignore: prefer_interpolation_to_compose_strings
+                                          author: "by: " +
+                                              snapshot
+                                                  .data[i].fields.username),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ]),
+                                  )));
                         }
-                      },
-                    )
-                  ],
-                ),
+                      }
+                    },
+                  )
+                ],
               ),
             ],
           ),
