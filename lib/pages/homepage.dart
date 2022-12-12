@@ -165,7 +165,7 @@ class _HomePageState extends State<Homepage> {
                               icon: CupertinoIcons.arrow_down_right,
                               iconBackgroundColor: AppTheme.darkBeige,
                               title: 'About Us',
-                              subtitle: 'Lorem Ipsum',
+                              subtitle: 'Know more about us!',
                             ),
                           ),
                           const SizedBox(height: 20.0),
