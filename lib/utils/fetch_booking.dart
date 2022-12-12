@@ -9,7 +9,6 @@ Future<List<BookingModel>> fetchBooking(request) async {
     'https://pbp-d04.up.railway.app/booking/json/',
   );
 
-  print(response);
   List<BookingModel> listBooking = [];
 
   for (var d in response) {
