@@ -3,6 +3,7 @@ import 'package:tk_akhir/pages/blogpost_page.dart';
 import 'package:tk_akhir/pages/booking_doctor_page.dart';
 import 'package:tk_akhir/pages/booking_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/feedback_page.dart';
 import 'package:tk_akhir/pages/login_page.dart';
 
 class DrawerClass extends StatelessWidget {
@@ -33,9 +34,7 @@ class DrawerClass extends StatelessWidget {
               Navigator.pushReplacementNamed(context, "/blogpost");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const BlogpostPage(
-                        )),
+                MaterialPageRoute(builder: (context) => const BlogpostPage()),
               );
             },
           ),
@@ -54,19 +53,27 @@ class DrawerClass extends StatelessWidget {
             onTap: () {
               if (userData['role'] == 1) {
                 Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const BookingPage()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BookingPage()));
               } else {
                 Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const BookingDoctorPage()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BookingDoctorPage()));
               }
             },
           ),
           ListTile(
-            title: const Text('FeedBack'),
+            title: const Text('Feedback'),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, "/feedback");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const FeedbackPage(title: 'feedback')),
+              );
             },
           ),
           ListTile(
@@ -80,4 +87,3 @@ class DrawerClass extends StatelessWidget {
     );
   }
 }
-
