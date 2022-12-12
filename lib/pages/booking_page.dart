@@ -118,6 +118,7 @@ class _BookingPageState extends State<BookingPage> {
                             );
                           } else {
                             return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: snapshot.data!.length,
                               itemBuilder: (_, i) => Container(

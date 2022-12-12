@@ -95,6 +95,7 @@ class _BookingDoctorState extends State<BookingDoctorPage> {
                             );
                           } else {
                             return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: snapshot.data!.length,
                               itemBuilder: (_, i) => Container(
