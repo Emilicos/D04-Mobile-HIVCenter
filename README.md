@@ -1,3 +1,11 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
+<br> <label> Pipeline status Release </label>
+[![Release](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml)
+<br> <label> Pipeline status Prerelease </label>
+[![Prerelease](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/pre-release.yml/badge.svg?)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/pre-release.yml)
+<br> <label> Pipeline status branch Development </label>
+[![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml/badge.svg?branch=development)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml)
+
 # Tugas Kelompok PBP D04
 
 ##  Nama-nama Anggota Kelompok 
@@ -9,7 +17,7 @@
 - Ravena Meilani (2106631923)
 
 ## Tautan Aplikasi
-**TBA**
+[Link App Center](https://install.appcenter.ms/orgs/hivcenter-mobile/apps/hivcenter-mobile/distribution_groups/public)
 
 ##  Cerita Aplikasi yang Diajukan Serta Manfaatnya 
 
@@ -51,9 +59,6 @@
 2. **Pasien** <br>
     User dapat membagikan pengalamannya pada forum experience serta reservasi kepada dokter untuk melakukan konsultasi atau pemeriksaan dan melakukan feedback terhadap website. Pasien juga dapat melihat blogpost
 
-3. **Visitor** <br>
-    Non user yang dapat melihat homepage namun tidak dapat mengakses banyak fitur yang diinginkan. Ini artinya visitor tidak dapat melihat blogpost maupun fitur-fitur lain seperti experience dan booking.
-  
 ## Pembagian tugas masing-masing anggota
 
 Berikut adalah pembagian tugas kelompok kami.
@@ -73,8 +78,16 @@ Berikut adalah pembagian tugas kelompok kami.
 4. Data yang disimpan akan kami gunakan untuk melakukan aksi-aksi lainnya seperti delete.
 5. Serta melakukan integrasi frontend dan backend menggunakan konsep asynchronous HTTP
 
+Untuk Fitur Login: <br>
+User akan memulai aplikasi dengan memilih tombol login yang ada. Selanjutnya user akan memasukkan username dan password akun mereka sehingga dapat diredirect kepada halaman `Homepage`. Data yang diterima dari form login tersebut akan dituju kepada server railway yang telah dibuat pada PTS kemarin. Endpoint yang digunakan adalah `https://pbp-d04.up.railway.app/authentication/login/validate_login/`. Melalui endpoint ini, kami akan menggunakan package **ppb_django_auth** yang telah disediakan oleh tim asdos. Apabila `JSONResponse` yang diberikan merupakan JSON yang valid maka user telah terautentikasi berdasarkan data-datanya tersebut. Data itu akan kami simpan sebagai variabel global yang dpaat digunakan diseluruh halaman pada fitur kami.  Pada halaman homepage akan dilihatkan profil user mereka 
 
+Untuk fitur Logout: <br>
+Kami juga akan menggunakan cara yang sama seperti fitur login, kami akan memanfaatkan endpoint yang dapat mentrigger fungsi yang telah dibuat sewaktu menjalankan PTS kemarin. Endpoint tersebut adalah `https://pbp-d04.up.railway.app/authentication/logout/`. Kami memanfaatkan package **pbp_django_auth**, agar cookie yang telah di set pada headers yang dilakukan pada saat login terjadi dihilangkan agar aplikasi menjadi aman. Setelah itu user akan dikembalikan kepada halaman pilihan login atau register. 
 
+Untuk Fitur Blogpost: <br>
+- User akan membuka halaman blogpost melalui drawer yang sudah disediakan. Lalu akan dimulai fetch data blogpost melalui endpoint yang telah dibuat pada PTS. Endpoint yang digunakan adalah `https://pbp-d04.up.railway.app/blogpost/json?importance=DT`. Ini akan mendapatkan response. Body Response ini lalu akan didecode agar dapat dibaca menjadi suatu String JSON. Lalu akan dilakukan JSON Decode agar String JSON tersebut dijadikan sebuah Map. Map ini lalu akan di loop dan menggunakan method FromJSON untuk dijadikan sebuah Object JSON kemudia dimasukkan kepada list agar dapat diiterasikan data-data tersebut.
+- Kemudian pada fungsi post akan kami gunakan juga endpoint yang telah dibentuk pada saat PTS yaitu `https://pbp-d04.up.railway.app/blogpost/create/`. Awalnya terdapat form dengan 5 field yaitu title, opening, main, closing, dan juga importance. Field tersebut lalu diambil value akhirnya dan digunakan untuk melakukan **passing** data menggunakan method post yang ada pada **pbp_django_auth**. Method post ini sangat memudahkan posting karena sudah mengurus kredensial dan mengubah data POST tersebut. 
+- Kemudian disediakan method DELETE apabila pengguna adalah seorang dokter. Method ini digunakan untuk menghapus blogpost yang sudah ada pada blogpost yang di fetch. Method ini juga menggunakan fungsi yang telah dibuat pada PTS kemarin. Dari fungsi ini akan difilter data berdasarkan blogpost ID sehingga dapat dihapus dari database yang ada. 
 
 
 

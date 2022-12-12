@@ -4,8 +4,9 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
+import 'package:tk_akhir/pages/about_us.dart';
 import 'package:tk_akhir/pages/login_page.dart';
-import 'package:tk_akhir/widgets/active_blogpost_card.dart';
+import 'package:tk_akhir/pages/misconceptions.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
 import 'package:tk_akhir/widgets/tile_column.dart';
 import 'package:tk_akhir/widgets/top_container.dart';
@@ -155,57 +156,36 @@ class _HomePageState extends State<Homepage> {
                             ],
                           ),
                           const SizedBox(height: 15.0),
-                          const TileColumn(
-                            icon: CupertinoIcons.arrow_down_right,
-                            iconBackgroundColor: AppTheme.darkBeige,
-                            title: 'About Us',
-                            subtitle: 'Lorem Ipsum',
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const AboutUsPage())),
+                            child: const TileColumn(
+                              icon: CupertinoIcons.arrow_down_right,
+                              iconBackgroundColor: AppTheme.darkBeige,
+                              title: 'About Us',
+                              subtitle: 'Know more about us!',
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          GestureDetector(
+                            onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MisconceptionsPage())),
+                            child: const TileColumn(
+                              icon: CupertinoIcons.arrow_down_right,
+                              iconBackgroundColor: AppTheme.pink,
+                              title: 'Misconceptions',
+                              subtitle: 'Find out the facts',
+                            ),
                           ),
                           const SizedBox(
                             height: 15.0,
                           ),
-                          const TileColumn(
-                            icon: CupertinoIcons.arrow_down_right,
-                            iconBackgroundColor: AppTheme.pink,
-                            title: 'Misconceptions',
-                            subtitle: 'Lorem Ipsum',
-                          ),
                           const SizedBox(height: 15.0),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      color: Colors.transparent,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          subheading('BlogPost'),
-                          const SizedBox(height: 5.0),
-                          Row(
-                            children: const <Widget>[
-                              ActiveBlogpostCard(
-                                cardColor: AppTheme.beige,
-                                title:
-                                    'Treating Addictions In Patients With HIV',
-                                subtitle: 'hahahahaha',
-                                user: "asdfadf",
-                                date: "adsf",
-                                importance: "adf",
-                                pk: 2,
-                              ),
-                              SizedBox(width: 20.0),
-                              ActiveBlogpostCard(
-                                  cardColor: AppTheme.beige,
-                                  title: 'Judul',
-                                  subtitle: 'hahahaha',
-                                  user: "asdf",
-                                  date: "adsf",
-                                  importance: "adf",
-                                  pk: 2),
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -213,7 +193,7 @@ class _HomePageState extends State<Homepage> {
                       onPressed: () async {
                         await request
                             .logout(
-                                "http://localhost:8000/authentication/logout/")
+                                "https://pbp-d04.up.railway.app/authentication/logout/")
                             .then(
                                 (value) =>
                                     {Navigator.popAndPushNamed(context, "/")},

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/pages/add_blog_page.dart';
+import 'package:tk_akhir/pages/add_feedback_page.dart';
 import 'package:tk_akhir/pages/blogpost_page.dart';
+import 'package:tk_akhir/pages/feedback_page.dart';
 import 'package:tk_akhir/pages/homepage.dart';
 import 'package:tk_akhir/pages/login_page.dart';
 import 'package:tk_akhir/pages/register_page.dart';
@@ -32,6 +34,9 @@ class MyApp extends StatelessWidget {
               "/homepage": (BuildContext context) =>
                   const Homepage(title: "Homepage"),
               "/create-blogpost": (BuildContext context) => const AddBlogPage(),
+              "/feedback": (BuildContext context) =>
+                  const FeedbackPage(title: "feedback"),
+              "/addFeedback": (BuildContext context) => const AddFeedbackPage(),
             }));
   }
 }

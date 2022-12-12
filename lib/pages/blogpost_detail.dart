@@ -84,6 +84,25 @@ class BlogpostDetail extends StatelessWidget {
                 ),
               ),
             ),
+            
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                 mainAxisAlignment: MainAxisAlignment.end,
+                 children: [
+                   ElevatedButton(
+                     onPressed: () {
+                       Navigator.pop(context);
+                     },
+                     style: ElevatedButton.styleFrom(
+                       backgroundColor: Colors.blue,
+                       minimumSize: const Size.fromHeight(50), // NEW
+                     ),
+                     child: const Text('Back', style: TextStyle(color: Colors.white)),
+                   )
+                 ],
+               ),
+            ),
           ],
         ),
       ),

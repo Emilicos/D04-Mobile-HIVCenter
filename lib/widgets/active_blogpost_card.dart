@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tk_akhir/pages/login_page.dart';
 import 'package:tk_akhir/utils/delete_blogpost.dart';
 
 import '../app_theme.dart';
@@ -26,7 +27,7 @@ class ActiveBlogpostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final request = context.watch<CookieRequest>();
-
+    final isButtonDisabled = userData['role'] == 2 ? false : true;
     Color importanceStyle = AppTheme.tagGreen;
     String importanceWord = "";
     if (importance == "HH") {
@@ -121,55 +122,116 @@ class ActiveBlogpostCard extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              ElevatedButton(
-                                onPressed: () async {
-                                  await deleteBlogpost(pk).then(
-                                      (value) => {
-                                            Navigator.popAndPushNamed(
-                                                context, '/blogpost')
-                                          },
-                                      onError: (error) => {
-                                            showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return Dialog(
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  elevation: 15,
-                                                  child: ListView(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 20,
-                                                            bottom: 20),
-                                                    shrinkWrap: true,
-                                                    children: <Widget>[
-                                                      const Center(
-                                                          child: Text(
-                                                              'Tidak bisa delete item')),
-                                                      const SizedBox(
-                                                          height: 20),
-                                                      TextButton(
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                        child: const Text(
-                                                            'Kembali'),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
-                                            )
-                                          });
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: AppTheme.redDelete),
-                                child: const Text("Delete"),
-                              ),
+                              Visibility(
+                                visible: !isButtonDisabled,
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    await deleteBlogpost(pk).then(
+                                        (value) => {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return Dialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    elevation: 15,
+                                                    child: ListView(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 20,
+                                                              bottom: 20),
+                                                      shrinkWrap: true,
+                                                      children: <Widget>[
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .fromLTRB(
+                                                                  20, 5, 20, 5),
+                                                          child: Center(
+                                                              child: Text(
+                                                            value['message'] ==
+                                                                    'Delete berhasil'
+                                                                ? 'Delete berhasil!'
+                                                                : "Tidak bisa delete Item karena anda bukan user yang membuat!",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          )),
+                                                        ),
+                                                        const SizedBox(
+                                                            height: 20),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            if (value[
+                                                                    'message'] ==
+                                                                'Delete berhasil') {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              Navigator
+                                                                  .pushReplacementNamed(
+                                                                      context,
+                                                                      "/blogpost");
+                                                            } else {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }
+                                                          },
+                                                          child: const Text(
+                                                              'Kembali'),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              )
+                                            },
+                                        onError: (error) => {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return Dialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    elevation: 15,
+                                                    child: ListView(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 20,
+                                                              bottom: 20),
+                                                      shrinkWrap: true,
+                                                      children: <Widget>[
+                                                        const Center(
+                                                            child: Text(
+                                                                'Tidak bisa delete item')),
+                                                        const SizedBox(
+                                                            height: 20),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: const Text(
+                                                              'Kembali'),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              )
+                                            });
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppTheme.redDelete),
+                                  child: const Text("Delete"),
+                                ),
+                              )
                             ],
                           ),
                         ),
