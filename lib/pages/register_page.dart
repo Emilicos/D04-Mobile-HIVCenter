@@ -1,10 +1,9 @@
-import 'dart:html';
 import 'dart:convert' as convert;
+
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 Map<String, dynamic> userData = {"is_taken": false};
 
@@ -32,7 +31,7 @@ class _RegisterPage extends State<RegisterPage> {
   String pass2 = "";
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
@@ -45,8 +44,7 @@ class _RegisterPage extends State<RegisterPage> {
                 "/login",
               );
             },
-            child:
-            const Text(
+            child: const Text(
               'Sudah Memiliki Akun?',
               style: TextStyle(
                 fontSize: 15,
@@ -58,24 +56,21 @@ class _RegisterPage extends State<RegisterPage> {
         ],
       ),
       backgroundColor: AppTheme.darkBeige,
-      body: 
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           const SizedBox(
             height: 100,
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-            child: 
-              const Text(
-                "Registrasi HIV Center",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+            child: const Text(
+              "Registrasi HIV Center",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
+            ),
           ),
           Form(
             key: _registerFormKey,
@@ -98,18 +93,18 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             username = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             username = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'Username tidak boleh kosong';
                           }
                           return null;
@@ -135,18 +130,18 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             email = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             email = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'Email tidak boleh kosong';
                           }
                           return null;
@@ -172,18 +167,18 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             fName = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             fName = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'First Name tidak boleh kosong';
                           }
                           return null;
@@ -209,18 +204,18 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             lName = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             lName = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'Last Name tidak boleh kosong';
                           }
                           return null;
@@ -255,18 +250,18 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             pass1 = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             pass1 = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'Password tidak boleh kosong';
                           }
                           return null;
@@ -301,21 +296,20 @@ class _RegisterPage extends State<RegisterPage> {
                             borderRadius: BorderRadius.circular(5.0),
                           ),
                         ),
-                        onChanged: (String? value){
+                        onChanged: (String? value) {
                           setState(() {
                             pass2 = value!;
                           });
                         },
-                        onSaved: (String? value){
+                        onSaved: (String? value) {
                           setState(() {
                             pass2 = value!;
                           });
                         },
-                        validator: (String? value){
-                          if (value == null || value.isEmpty){
+                        validator: (String? value) {
+                          if (value == null || value.isEmpty) {
                             return 'Password tidak boleh kosong';
-                          }
-                          else if (value != pass1) {
+                          } else if (value != pass1) {
                             return 'Password tidak sama';
                           }
                           return null;
@@ -335,40 +329,112 @@ class _RegisterPage extends State<RegisterPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(AppTheme.tagRed),
+                              backgroundColor:
+                                  MaterialStateProperty.all(AppTheme.tagRed),
                             ),
                             onPressed: () async {
-                              if (_registerFormKey.currentState!.validate()){
-                                final response = await request.post("https://pbp-d04.up.railway.app/authentication/registerpasien/registerFlutterPasien/",
-                                convert.jsonEncode(
-                                {
-                                  'username' : username,
-                                  'email' : email,
-                                  'first_name' : fName,
-                                  'last_name' : lName,
-                                  'password1' : pass1,
-                                  'password2' : pass2,
-                                }));
-                                if (response['status'] == 'success'){
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text("Akun Untuk Pasien Berhasil Dibuat"),
-                                    ));
-                                    Navigator.pushReplacementNamed(context, "/login");
-                                } else if (response['status'] == 'isTaken'){
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text(
-                                        "Username sudah ada silahkan memilih username lainnya"
-                                      ),
-                                    ));                             
+                              if (_registerFormKey.currentState!.validate()) {
+                                final response = await request.post(
+                                    "https://pbp-d04.up.railway.app/authentication/registerpasien/registerFlutterPasien/",
+                                    convert.jsonEncode({
+                                      'username': username,
+                                      'email': email,
+                                      'first_name': fName,
+                                      'last_name': lName,
+                                      'password1': pass1,
+                                      'password2': pass2,
+                                    }));
+                                if (response['status'] == 'success') {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Akun Untuk Pasien Berhasil Dibuat')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pushReplacementNamed(
+                                                    context, "/login");
+                                              },
+                                              child: const Text('Login Page'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                } else if (response['status'] == 'isTaken') {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Username sudah ada silahkan memilih username lainnya')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Kembali'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
                                 } else {
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text(
-                                        "Register error, silahkan coba lagi"
-                                      ),
-                                    ));
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Register error, silahkan coba lagi')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Kembali'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
                                 }
                               }
                             },
@@ -393,40 +459,112 @@ class _RegisterPage extends State<RegisterPage> {
                           padding: const EdgeInsets.all(8.0),
                           child: TextButton(
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(AppTheme.tagRed),
+                              backgroundColor:
+                                  MaterialStateProperty.all(AppTheme.tagRed),
                             ),
                             onPressed: () async {
-                              if (_registerFormKey.currentState!.validate()){
-                                final response = await request.post("https://pbp-d04.up.railway.app/authentication/registerdokter/registerFlutterDokter/",
-                                convert.jsonEncode(
-                                {
-                                  'username' : username,
-                                  'email' : email,
-                                  'first_name' : fName,
-                                  'last_name' : lName,
-                                  'password1' : pass1,
-                                  'password2' : pass2,
-                                }));
-                                if (response['status'] == 'success'){
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text("Akun Untuk Dokter Berhasil Dibuat"),
-                                    ));
-                                    Navigator.pushReplacementNamed(context, "/login");
-                                } else if (response['status'] == 'isTaken'){
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text(
-                                        "Username sudah ada silahkan memilih username lainnya"
-                                      ),
-                                    ));                             
+                              if (_registerFormKey.currentState!.validate()) {
+                                final response = await request.post(
+                                    "https://pbp-d04.up.railway.app/authentication/registerdokter/registerFlutterDokter/",
+                                    convert.jsonEncode({
+                                      'username': username,
+                                      'email': email,
+                                      'first_name': fName,
+                                      'last_name': lName,
+                                      'password1': pass1,
+                                      'password2': pass2,
+                                    }));
+                                if (response['status'] == 'success') {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Akun Untuk Dokter Berhasil Dibuat')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pushReplacementNamed(
+                                                    context, "/login");
+                                              },
+                                              child: const Text('Login Page'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                } else if (response['status'] == 'isTaken') {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Username sudah ada silahkan memilih username lainnya')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Kembali'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
                                 } else {
-                                  ScaffoldMessenger.of(context)
-                                    .showSnackBar(const SnackBar(
-                                      content: Text(
-                                        "Register error, silahkan coba lagi"
-                                      ),
-                                    ));
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        elevation: 15,
+                                        child: ListView(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, bottom: 20),
+                                          shrinkWrap: true,
+                                          children: <Widget>[
+                                            const Center(
+                                                child: Text(
+                                                    'Register error, silahkan coba lagi')),
+                                            const SizedBox(height: 20),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Kembali'),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
                                 }
                               }
                             },

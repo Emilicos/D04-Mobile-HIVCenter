@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
-import 'package:tk_akhir/widgets/drawer.dart';
 
 Map<String, dynamic> userData = {"is_login": false, "username": "", "role": 0};
 
@@ -29,40 +28,36 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.pink,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pushReplacementNamed(
-                context,
-                "/register",
-              );
-            },
-            child:
-            const Text(
-              'Belum Memiliki Akun HIV Center?',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )
-        ],
-      ),
-        backgroundColor: AppTheme.darkBeige,
-        body: 
-        Container(
-          decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/asset1.png'),
-                  scale: 8,
-                  alignment: Alignment.bottomCenter,
-                  
+        appBar: AppBar(
+          backgroundColor: Colors.pink,
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  "/register",
+                );
+              },
+              child: const Text(
+                'Belum Memiliki Akun HIV Center?',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
-                
               ),
+            )
+          ],
+        ),
+        backgroundColor: AppTheme.darkBeige,
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/asset1.png'),
+              scale: 8,
+              alignment: Alignment.bottomCenter,
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,8 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Container(
                 padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
-                child: 
-                const Text(
+                child: const Text(
                   "HIV Center",
                   style: TextStyle(
                     fontSize: 20,
@@ -189,11 +183,12 @@ class _LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextButton(
                                   style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(AppTheme.tagRed),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        AppTheme.tagRed),
                                   ),
                                   onPressed: () async {
-                                    if (_loginFormKey.currentState!.validate()) {
+                                    if (_loginFormKey.currentState!
+                                        .validate()) {
                                       await request.login(
                                           "https://pbp-d04.up.railway.app/authentication/login/validate_login/",
                                           {
@@ -215,7 +210,8 @@ class _LoginPageState extends State<LoginPage> {
                                                 shrinkWrap: true,
                                                 children: <Widget>[
                                                   Center(
-                                                      child: Text(value["is_login"]
+                                                      child: Text(value[
+                                                              "is_login"]
                                                           ? 'Login berhasil!'
                                                           : "Kredensial yang dimasukkan salah")),
                                                   const SizedBox(height: 20),
@@ -231,14 +227,16 @@ class _LoginPageState extends State<LoginPage> {
                                                         Navigator.pop(context);
                                                         Navigator
                                                             .pushReplacementNamed(
-                                                                context, "/homepage");
+                                                                context,
+                                                                "/homepage");
                                                       } else {
                                                         Navigator.pop(context);
                                                       }
                                                     },
-                                                    child: Text(value["is_login"]
-                                                        ? 'Homepage'
-                                                        : "Kembali"),
+                                                    child: Text(
+                                                        value["is_login"]
+                                                            ? 'Homepage'
+                                                            : "Kembali"),
                                                   ),
                                                 ],
                                               ),
@@ -268,7 +266,8 @@ class _LoginPageState extends State<LoginPage> {
                                                     onPressed: () {
                                                       Navigator.pop(context);
                                                     },
-                                                    child: const Text('Kembali'),
+                                                    child:
+                                                        const Text('Kembali'),
                                                   ),
                                                 ],
                                               ),
