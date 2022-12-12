@@ -28,7 +28,8 @@ class FeedbackCard extends StatelessWidget {
                     backgroundColor: Color(0xFFEAE7DC),
                     radius: 108,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage("profile.png"), //NetworkImage
+                      backgroundImage: AssetImage(
+                          "assets/images/profile.png"), //NetworkImage
                       radius: 100,
                     ), //CircleAvatar
                   ),
