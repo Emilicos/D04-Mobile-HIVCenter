@@ -1,9 +1,10 @@
 [![Build status](https://build.appcenter.ms/v0.1/apps/0eaf49c3-6d9a-463b-95ea-bf48f6f97426/branches/main/badge)](https://appcenter.ms)
-<br> <label> Pipeline status branch main </label>
-![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)
-
-<label> Pipeline status branch development </label>
-![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml/badge.svg?branch=development)
+<br> <label> Pipeline status Release </label>
+[![Release](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/release.yml)
+<br> <label> Pipeline status Prerelease </label>
+[![Prerelease](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/pre-release.yml/badge.svg?)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/pre-release.yml)
+<br> <label> Pipeline status branch Development </label>
+[![Pipeline Status Branch](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml/badge.svg?branch=development)](https://github.com/Emilicos/D04-Mobile-HIVCenter/actions/workflows/development.yml)
 
 # Tugas Kelompok PBP D04
 
@@ -16,7 +17,7 @@
 - Ravena Meilani (2106631923)
 
 ## Tautan Aplikasi
-**TBA**
+[Link App Center](https://install.appcenter.ms/orgs/hivcenter-mobile/apps/hivcenter-mobile/distribution_groups/public)
 
 ##  Cerita Aplikasi yang Diajukan Serta Manfaatnya 
 
