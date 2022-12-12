@@ -1,22 +1,18 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:tk_akhir/models/booking_model.dart';
 
 List<BookingModel> listBookingUser = [];
 
-Future<List<BookingModel>> fetchBooking() async {
+Future<List<BookingModel>> fetchBooking(request) async {
   List<BookingModel> listBookingUser = [];
 
-  var url = Uri.parse('https://pbp-d04.up.railway.app/booking/json/');
-  var response = await http.get(
-    url,
+  var response = await request.get(
+    'https://pbp-d04.up.railway.app/booking/json/',
   );
-  var data = jsonDecode(utf8.decode(response.bodyBytes));
 
+  print(response);
   List<BookingModel> listBooking = [];
 
-  for (var d in data) {
+  for (var d in response) {
     if (d != null) {
       listBooking.add(BookingModel.fromJson(d));
       listBookingUser.add(BookingModel.fromJson(d));
