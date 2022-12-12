@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:tk_akhir/app_theme.dart';
 import 'package:tk_akhir/pages/feedback_page.dart';
 import 'package:tk_akhir/widgets/drawer.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:tk_akhir/widgets/feedback_card.dart';
 
 class AddFeedbackPage extends StatefulWidget {
   const AddFeedbackPage({super.key});
@@ -24,28 +23,6 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-
-        // showDialog<String>(
-        //             context: context,
-        //                       builder: (BuildContext context) => AlertDialog(
-        //                         title: const Text("Invalid"),
-        //                         content: const Text('User is not registered!'),
-        //                         actions: [
-        //                           TextButton(
-        //                             onPressed: () =>
-        //                                 Navigator.pop(context, 'Cancel'),
-        //                             child: const Text('Cancel'),
-        //                           ),
-        //                           TextButton(
-        //                             onPressed: () =>
-        //                                 Navigator.pop(context, 'OK'),
-        //                             child: const Text('OK'),
-        //                           ),
-        //                         ],
-        //                       ),
-
-
-
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: const Text(
@@ -143,83 +120,81 @@ class _AddFeedbackPageState extends State<AddFeedbackPage> {
                 ),
                 TextButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(AppTheme.tagRed),
+                    backgroundColor: MaterialStateProperty.all(AppTheme.tagRed),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       await request.post(
-                          "https://pbp-d04.up.railway.app/feedback/create/",
-                          {
-                            "title": title,
-                            "username": username,
-                            "description": description
-                          }).then(
-                          (value) => {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return Dialog(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      elevation: 15,
-                                      child: ListView(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, bottom: 20),
-                                        shrinkWrap: true,
-                                        children: <Widget>[
-                                          const Center(
-                                              child: Text(
-                                                  'Feedback telah ditambahkan!')),
-                                          const SizedBox(height: 20),
-                                          TextButton(
-                                            onPressed: () {
-                                              Navigator.pushReplacement(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const FeedbackPage(
-                                                              title: '')));
-                                            },
-                                            child: const Text('Kembali'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                )
-                              },
-                          // onError: (error) => {
-                          //       showDialog(
-                          //         context: context,
-                          //         builder: (context) {
-                          //           return Dialog(
-                          //             shape: RoundedRectangleBorder(
-                          //               borderRadius: BorderRadius.circular(10),
-                          //             ),
-                          //             elevation: 15,
-                          //             child: ListView(
-                          //               padding: const EdgeInsets.only(
-                          //                   top: 20, bottom: 20),
-                          //               shrinkWrap: true,
-                          //               children: <Widget>[
-                          //                 const Center(
-                          //                     child: Text('Data Gagal dibuat')),
-                          //                 const SizedBox(height: 20),
-                          //                 TextButton(
-                          //                   onPressed: () {
-                          //                     Navigator.pop(context);
-                          //                   },
-                          //                   child: const Text('Kembali'),
-                          //                 ),
-                          //               ],
-                          //             ),
-                          //           );
-                          //         },
-                          //       )
-                          //     }
+                          "https://pbp-d04.up.railway.app/feedback/create/", {
+                        "title": title,
+                        "username": username,
+                        "description": description
+                      }).then(
+                        (value) => {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 15,
+                                child: ListView(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    const Center(
+                                        child: Text(
+                                            'Feedback telah ditambahkan!')),
+                                    const SizedBox(height: 20),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const FeedbackPage(
+                                                        title: '')));
+                                      },
+                                      child: const Text('Kembali'),
+                                    ),
+                                  ],
+                                ),
                               );
+                            },
+                          )
+                        },
+                        // onError: (error) => {
+                        //       showDialog(
+                        //         context: context,
+                        //         builder: (context) {
+                        //           return Dialog(
+                        //             shape: RoundedRectangleBorder(
+                        //               borderRadius: BorderRadius.circular(10),
+                        //             ),
+                        //             elevation: 15,
+                        //             child: ListView(
+                        //               padding: const EdgeInsets.only(
+                        //                   top: 20, bottom: 20),
+                        //               shrinkWrap: true,
+                        //               children: <Widget>[
+                        //                 const Center(
+                        //                     child: Text('Data Gagal dibuat')),
+                        //                 const SizedBox(height: 20),
+                        //                 TextButton(
+                        //                   onPressed: () {
+                        //                     Navigator.pop(context);
+                        //                   },
+                        //                   child: const Text('Kembali'),
+                        //                 ),
+                        //               ],
+                        //             ),
+                        //           );
+                        //         },
+                        //       )
+                        //     }
+                      );
                     }
                   },
                   // onPressed: () {
