@@ -29,13 +29,37 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.pink,
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(
+                context,
+                "/register",
+              );
+            },
+            child:
+            const Text(
+              'Belum Memiliki Akun HIV Center?',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ],
+      ),
         backgroundColor: AppTheme.darkBeige,
         body: 
         Container(
           decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/asset1.png'),
-                  scale: 12,
+                  scale: 8,
+                  alignment: Alignment.bottomCenter,
+                  
                 ),
                 
               ),
@@ -46,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 100,
               ),
               Container(
-                padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
+                padding: const EdgeInsets.fromLTRB(20, 5, 20, 10),
                 child: 
                 const Text(
                   "HIV Center",
