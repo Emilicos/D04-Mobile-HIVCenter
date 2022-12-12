@@ -33,9 +33,7 @@ class DrawerClass extends StatelessWidget {
               Navigator.pushReplacementNamed(context, "/blogpost");
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const BlogpostPage(
-                        )),
+                MaterialPageRoute(builder: (context) => const BlogpostPage()),
               );
             },
           ),
@@ -54,12 +52,14 @@ class DrawerClass extends StatelessWidget {
             onTap: () {
               if (userData['role'] == 1) {
                 Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const BookingPage()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BookingPage()));
               } else {
                 Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const BookingDoctorPage()));
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BookingDoctorPage()));
               }
             },
           ),
@@ -72,7 +72,7 @@ class DrawerClass extends StatelessWidget {
           ListTile(
             title: const Text('Login'),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, "/feedback");
             },
           ),
         ],
@@ -80,4 +80,3 @@ class DrawerClass extends StatelessWidget {
     );
   }
 }
-

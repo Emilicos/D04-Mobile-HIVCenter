@@ -1,8 +1,4 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
-import '../app_theme.dart';
-import 'package:tk_akhir/models/feedback_model.dart';
 
 class FeedbackCard extends StatelessWidget {
   final String title;
