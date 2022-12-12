@@ -3,6 +3,7 @@ import 'package:tk_akhir/pages/blogpost_page.dart';
 import 'package:tk_akhir/pages/booking_doctor_page.dart';
 import 'package:tk_akhir/pages/booking_page.dart';
 import 'package:tk_akhir/pages/experience/experience.dart';
+import 'package:tk_akhir/pages/feedback_page.dart';
 import 'package:tk_akhir/pages/login_page.dart';
 
 class DrawerClass extends StatelessWidget {
@@ -64,15 +65,21 @@ class DrawerClass extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('FeedBack'),
+            title: const Text('Feedback'),
             onTap: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, "/feedback");
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        const FeedbackPage(title: 'feedback')),
+              );
             },
           ),
           ListTile(
             title: const Text('Login'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, "/feedback");
+              Navigator.of(context).pop();
             },
           ),
         ],
